@@ -25,6 +25,19 @@
         :alt="metadata.siteName"
       />
     </div>
+
+    <div class="container">
+      <ul class="flex -ml-2 space-x-3">
+        <li v-for="{ icon, url } in links" :key="icon">
+          <g-link
+            class="relative inline-flex items-center justify-center w-8 h-8 transition-colors duration-200 rounded hover:bg-gray-200"
+            :to="url"
+          >
+            <g-icon :name="icon" size="18" />
+          </g-link>
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -35,7 +48,28 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+
+  data: () => ({
+    links: [
+      {
+        icon: "twitter",
+        url: "https://twitter.com/bourhaouta"
+      },
+      {
+        icon: "github",
+        url: "https://github.com/bourhaouta"
+      },
+      {
+        icon: "codepen",
+        url: "https://codepen.io/bourhaouta"
+      },
+      {
+        icon: "linkedin",
+        url: "https://www.linkedin.com/in/bourhaouta"
+      }
+    ]
+  })
 };
 </script>
 

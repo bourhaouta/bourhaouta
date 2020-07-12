@@ -2,9 +2,12 @@
   <nav class="mb-4">
     <div class="container grid items-center h-32 grid-cols-3">
       <div>
-        <g-link v-if="back" class="flex items-center" :to="back.path">
-          <g-icon name="home" />
-          <span>{{ back.title }}</span>
+        <g-link
+          v-if="back"
+          class="inline-flex items-center justify-center w-8 h-8 rounded hover:bg-gray-200"
+          :to="back.path"
+        >
+          <g-icon name="back" />
         </g-link>
       </div>
 

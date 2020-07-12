@@ -715,7 +715,7 @@ module.exports = {
     minWidth: ["responsive"],
     objectFit: ["responsive"],
     objectPosition: ["responsive"],
-    opacity: ["responsive", "hover", "focus"],
+    opacity: ["responsive", "hover", "focus", "group-hover"],
     order: ["responsive"],
     outline: ["responsive", "focus"],
     overflow: ["responsive"],
@@ -772,9 +772,7 @@ module.exports = {
         ".container": {
           "@apply px-4 mx-auto": {},
 
-          "@screen sm": {
-            maxWidth: theme("screens.sm"),
-          },
+          maxWidth: theme("screens.sm"),
         },
 
         ".separate": {},

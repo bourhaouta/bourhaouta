@@ -1,13 +1,9 @@
 const plugin = require("tailwindcss/plugin");
 
-module.exports = plugin(function({ addComponents }) {
+module.exports = plugin(function({ addComponents, theme }) {
   addComponents({
     ".markdown-body": {
-      "@apply text-base text-gray-900 leading-normal break-words": {},
-
-      "*:not(:last-child)": {
-        "@apply mt-0 mb-4": {},
-      },
+      "@apply text-base text-gray-900 leading-loose break-words": {},
 
       li: {
         "&:not(:last-child)": {
@@ -16,6 +12,24 @@ module.exports = plugin(function({ addComponents }) {
 
         "& p:not(:last-child)": {
           "@apply mb-6": {},
+        },
+      },
+
+      hr: {
+        "@apply my-6": {},
+      },
+
+      a: {
+        backgroundImage: `linear-gradient(transparent 0%, transparent calc(50% - 9px), ${theme(
+          "colors.primary.100"
+        )} calc(50% - 9px), ${theme("colors.primary.100")} 100%)`,
+        backgroundSize: "100% 200%",
+        transitionProperty: "background-position",
+
+        "@apply duration-200": {},
+
+        "&:hover": {
+          backgroundPosition: `0% 100%`,
         },
       },
 
@@ -28,7 +42,7 @@ module.exports = plugin(function({ addComponents }) {
       },
 
       "h1, h2, h3, h4, h5, h6": {
-        "@apply font-semibold mb-4 mt-6": {},
+        "@apply font-semibold mb-4 mt-10": {},
       },
 
       h1: {
@@ -60,11 +74,11 @@ module.exports = plugin(function({ addComponents }) {
       },
 
       code: {
-        "@apply font-mono text-sm inline bg-gray-200 rounded px-2 py-1": {},
+        "@apply font-mono text-xs inline bg-gray-200 rounded px-2 py-1": {},
       },
 
-      pre: {
-        "@apply bg-gray-100 rounded p-4": {},
+      "pre[class*='language-']": {
+        "@apply rounded p-4 my-6": {},
 
         code: {
           "@apply block bg-transparent p-0 overflow-visible rounded-none": {},

@@ -1,5 +1,5 @@
 <template>
-  <g-layout :back="{ title: 'All articles', path: '/blog' }">
+  <g-layout :back="{ icon: 'back', title: 'All articles', path: '/blog' }">
     <div class="container">
       <h1 class="mb-6 font-serif text-4xl font-bold text-center">
         {{ $page.post.title }}

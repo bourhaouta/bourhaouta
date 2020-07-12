@@ -1,14 +1,14 @@
 ---
 layout: default
 published: true
-featuerd: true
-title: Considerations When Choosing Fonts for a Multilingual Website
-date: 2020-03-10
-cover: https://i.imgur.com/r63c0dB.png
-tags: ["font loading", "font-face", "glyphs", "system fonts"]
-external: https://css-tricks.com/considerations-when-choosing-fonts-for-a-multilingual-website
+featured: true
+title: A Primer on Display Advertising for Web Designers
+date: 2020-06-04
+cover: https://i.imgur.com/zKmHgwd.jpg
+tags: ["advertising", "layout"]
+external: https://css-tricks.com/a-primer-on-display-advertising-for-web-designers
 ---
 
-I’ve always struggled to deal with multilingual websites — especially cases where both right-to-left (RTL) and left-to-right (LTR) are used. That said, I am going to share a few tips in this post.
+Building layouts with ads in them is a dance of handling them in fluid environments, and also balancing the need to showcase our content and highlight the ads to make sure they are effective.
 
 ---

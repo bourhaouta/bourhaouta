@@ -1,15 +1,17 @@
 <template>
-  <article class="relative grid items-start grid-cols-2 gap-6 article">
+  <article
+    class="relative grid items-start grid-cols-2 gap-6 col-gap-6 group article"
+  >
     <div
-      class="absolute inset-0 mb-4 ml-3 -mt-3 -mr-3 transition-opacity duration-300 bg-opacity-25 rounded-sm opacity-0 bg-primary-200 -z-1 background"
+      class="absolute inset-0 mb-4 ml-3 -mt-3 -mr-3 transition-opacity duration-300 bg-opacity-25 rounded-sm opacity-0 bg-primary-200 -z-1 group-hover:opacity-100"
     />
 
     <g-link
       :to="article.external || article.path"
-      class="bg-gray-100 rounded-sm ratio"
+      class="bg-gray-200 rounded-sm ratio"
     >
-      <g-image :alt="article.title" :src="article.cover"> </g-image
-    ></g-link>
+      <g-image :alt="article.title" :src="article.cover"></g-image>
+    </g-link>
 
     <div class="flex flex-col h-full">
       <h2 class="mb-2 -mt-1 text-xl">
@@ -57,9 +59,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.article:hover > .background {
-  opacity: 1;
-}
-</style>

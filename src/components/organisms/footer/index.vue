@@ -26,7 +26,7 @@
           </label>
           <input
             id="name"
-            class="block w-full h-10 px-4 leading-tight text-gray-700 transition-colors duration-200 border appearance-none focus:outline-none focus:border-secondary-200"
+            class="block w-full h-10 px-4 leading-tight text-gray-700 transition-colors duration-200 border rounded-sm appearance-none focus:outline-none focus:border-secondary-200"
             type="text"
             placeholder="John Doe"
           />
@@ -42,7 +42,7 @@
 
           <input
             id="email"
-            class="block w-full h-10 px-4 leading-tight text-gray-700 transition-colors duration-200 border appearance-none focus:outline-none focus:border-secondary-200"
+            class="block w-full h-10 px-4 leading-tight text-gray-700 transition-colors duration-200 border rounded-sm appearance-none focus:outline-none focus:border-secondary-200"
             type="email"
             name="email"
             placeholder="john.doe@mail.com"
@@ -59,22 +59,27 @@
 
           <textarea
             id="message"
-            class="block w-full h-20 px-4 py-3 leading-tight text-gray-700 transition-colors duration-200 border appearance-none focus:outline-none focus:border-secondary-200"
+            class="block w-full h-20 px-4 py-3 leading-tight text-gray-700 transition-colors duration-200 border rounded-sm appearance-none focus:outline-none focus:border-secondary-200"
             name="message"
             placeholder="Your message"
           />
         </div>
 
         <div class="flex justify-end sm:col-span-2">
-          <button
-            type="submit"
-            class="inline-flex items-center h-8 px-6 font-medium text-gray-800 transition-colors duration-200 bg-white border hover:bg-secondary-100 hover:border-secondary-200"
-          >
+          <g-button type="submit">
             <span class="mr-2">Send</span>
             <g-icon name="send" />
-          </button>
+          </g-button>
         </div>
       </form>
     </div>
   </footer>
 </template>
+
+<script>
+import GButton from "@/components/atoms/g-button";
+
+export default {
+  components: { GButton }
+};
+</script>
