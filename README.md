@@ -1,14 +1,10 @@
-# Default starter for Gridsome
+### Hi there 👋
 
-This is the project you get when you run `gridsome create new-project`.
-
-### 1. Install Gridsome CLI tool if you don't have
-
-`npm install --global @gridsome/cli`
-
-### 2. Create a Gridsome project
-
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+#### I'm a Front-End Developer.
+- 🏢 I'm currently working at **SQLI**
+- ⚙️ I use daily: `.jsx`, `.html`, `.css`, `.svg`, `.psd`, `.ai`
+- 🌍 I'm mostly active within the **Vue Community**
+- 🚀 Launched: [This Repo](https://bourhaouta.com/), [Shoot](https://shooot.bourhaouta.com/), [Tailwind CSS Shades](https://marketplace.visualstudio.com/items?itemName=bourhaouta.tailwindshades), [Check the log!](https://checkthelog.app/) etc…
+- 🌱 Learning all about **UI/UX**
+- 💬 Ping me about **design**, **branding**, **laravel**, **development**, **CSS**
+- 📫 Reach me: [twitter.com/bourhaouta](https://twitter.com/bourhaouta)
