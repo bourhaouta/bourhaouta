@@ -5,7 +5,6 @@ import "prismjs/themes/prism-okaidia.css";
 import GHeading from "~/components/atoms/g-heading";
 import GIcon from "~/components/atoms/g-icon";
 import GLayout from "~/layouts/default";
-import Ads from "vue-google-adsense";
 
 export default (Vue, { router, head, isClient }) => {
   // Push Rubik font to head
@@ -27,12 +26,4 @@ export default (Vue, { router, head, isClient }) => {
 
   // Layouts
   Vue.component("g-layout", GLayout);
-
-  // Test GA
-  if (isClient) {
-    Vue.use(Ads.AutoAdsense, {
-      adClient: "ca-pub-9474866168322448",
-      isNewAdsCode: true,
-    });
-  }
 };
