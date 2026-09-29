@@ -1,9 +1,13 @@
 *.log
-.cache
 .DS_Store
-src/.temp
 node_modules
-dist
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+.vercel
 .env
 .env.*
+!.env.example
 .vscode/*
+README.md

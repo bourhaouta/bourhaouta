@@ -2,23 +2,34 @@
   "name": "bourhaouta",
   "private": true,
   "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "core-js": "^3.6.5",
-    "gridsome": "^0.7.0",
-    "prismjs": "^1.20.0"
+    "@next/third-parties": "^16.3.7",
+    "gray-matter": "^4.0.3",
+    "next": "^16.3.7",
+    "prismjs": "^1.30.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "rehype-prism-plus": "^2.0.2",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "resend": "^6.31.0",
+    "rss-parser": "^3.13.0",
+    "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@gridsome/plugin-google-analytics": "^0.1.0",
-    "@gridsome/remark-prismjs": "^0.3.0",
-    "@gridsome/source-contentful": "^0.5.2",
-    "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.5.0",
-    "gridsome-plugin-tailwindcss": "^2.2.48",
-    "gridsome-source-rss": "^1.0.0"
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.7",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
   }
 }
