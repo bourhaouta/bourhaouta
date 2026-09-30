@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
-import Icon, { type IconName } from "./Icon";
+import type { IconName } from "./Icon";
+import SocialIconLink from "./SocialIconLink";
 
 const links: { icon: IconName; label: string; url: string }[] = [
   { icon: "mail", label: `Email ${site.email}`, url: `mailto:${site.email}` },
@@ -12,23 +13,11 @@ const links: { icon: IconName; label: string; url: string }[] = [
 export default function SocialLinks({ className = "" }: { className?: string }) {
   return (
     <ul className={`flex space-x-3 ${className}`}>
-      {links.map(({ icon, label, url }) => {
-        const external = !url.startsWith("mailto:");
-        return (
-          <li key={icon}>
-            <a
-              className="relative inline-flex h-8 w-8 items-center justify-center rounded transition-colors duration-200 hover:bg-surface"
-              href={url}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
-              aria-label={label}
-              title={label}
-            >
-              <Icon name={icon} size={18} />
-            </a>
-          </li>
-        );
-      })}
+      {links.map((link) => (
+        <li key={link.icon}>
+          <SocialIconLink {...link} />
+        </li>
+      ))}
     </ul>
   );
 }

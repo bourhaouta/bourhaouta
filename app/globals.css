@@ -254,6 +254,43 @@
     translate: var(--sx) var(--sy);
     transition-duration: 90ms;
   }
+
+  /* Social icons (components/SocialIconLink.tsx): a red copy of the icon is its shadow */
+  .icon-shadow {
+    --sx: 2px;
+    --sy: 2px;
+    --ix: 0px;
+    --iy: 0px;
+  }
+
+  .icon-shadow-back,
+  .icon-shadow-front {
+    display: inline-flex;
+    transition:
+      translate 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 200ms ease;
+  }
+
+  .icon-shadow-back {
+    @apply absolute text-primary-300 dark:text-primary-600;
+    opacity: 0;
+    translate: var(--sx) var(--sy);
+  }
+
+  .icon-shadow-front {
+    position: relative;
+    translate: var(--ix) var(--iy);
+  }
+
+  .icon-shadow:hover .icon-shadow-back,
+  .icon-shadow:focus-visible .icon-shadow-back {
+    opacity: 1;
+  }
+
+  .icon-shadow:active .icon-shadow-front {
+    translate: var(--sx) var(--sy);
+    transition-duration: 90ms;
+  }
 }
 
 /* Cover image morph between the article list and the post page */

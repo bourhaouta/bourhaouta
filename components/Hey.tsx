@@ -37,24 +37,18 @@ export default function Hey() {
             <br />I build product-focused web apps, end to end.
           </h1>
 
-          <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-            {site.status && (
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-surface px-2.5 py-1 transition-colors hover:text-accent-hover"
-              >
-                <span className="relative flex h-2 w-2" aria-hidden>
-                  <span className="absolute h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
-                  <span className="relative h-2 w-2 rounded-full bg-green-500" />
-                </span>
-                {site.status}
-              </a>
-            )}
-            <Link href="/resume" className="inline-flex items-center gap-1 underline-offset-2 hover:text-accent-hover hover:underline">
-              <Icon name="file" size={14} />
-              View resume
-            </Link>
-          </p>
+          {site.status && (
+            <a
+              href="#contact"
+              className="mt-3 inline-flex items-center gap-2 rounded-full bg-surface px-2.5 py-1 transition-colors hover:text-accent-hover"
+            >
+              <span className="relative flex h-2 w-2" aria-hidden>
+                <span className="absolute h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
+                <span className="relative h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              {site.status}
+            </a>
+          )}
         </div>
 
         {/* From sm up: map card on the right with the moving shadow */}
@@ -72,8 +66,17 @@ export default function Hey() {
         </ShadowFrame>
       </div>
 
-      <div className="site-container">
+      {/* Icons, then the resume link after a thin divider */}
+      <div className="site-container flex flex-wrap items-center gap-x-3 gap-y-2">
         <SocialLinks className="-ml-2" />
+        <span aria-hidden className="h-4 w-px bg-line" />
+        <Link
+          href="/resume"
+          className="inline-flex items-center gap-1 underline-offset-2 hover:text-accent-hover hover:underline"
+        >
+          <Icon name="file" size={14} />
+          View resume
+        </Link>
       </div>
     </header>
   );
