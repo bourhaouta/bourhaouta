@@ -14,6 +14,8 @@ export type Project = {
   marketplace?: string;
   // Package name on npm
   npm?: string;
+  /** Short card across both columns, for smaller projects */
+  compact?: boolean;
 };
 
 export type ProjectStats = {
@@ -56,6 +58,7 @@ export const projects: Project[] = [
     brand: "#f97316",
     github: "bourhaouta/hotory",
     npm: "hotory",
+    compact: true,
   },
 ];
 

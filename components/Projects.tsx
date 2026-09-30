@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getProjectStats, projects, type ProjectStats } from "@/lib/projects";
+import { getProjectStats, projects, type Project, type ProjectStats } from "@/lib/projects";
 import Heading from "./Heading";
 import Icon, { type IconName } from "./Icon";
 import ShadowFrame from "./ShadowFrame";
@@ -41,6 +41,94 @@ function Stats({ stats }: { stats: ProjectStats }) {
   );
 }
 
+function ProjectIcon({ project }: { project: Project }) {
+  return (
+    <Image
+      src={project.icon}
+      alt=""
+      width={40}
+      height={40}
+      // The image optimizer doesn't process SVGs; they're small and sharp as is
+      unoptimized={project.icon.endsWith(".svg")}
+      className="h-10 w-10 flex-none rounded-xl shadow-sm"
+    />
+  );
+}
+
+// Stretched link: the whole card is clickable
+function ProjectLink({ project }: { project: Project }) {
+  return (
+    <a href={project.url} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
+      {project.name}
+    </a>
+  );
+}
+
+function SourceLink({ project }: { project: Project }) {
+  if (!project.github) return null;
+  return (
+    <a
+      href={`https://github.com/${project.github}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative z-10 text-2xs text-muted underline-offset-2 hover:text-accent hover:underline"
+    >
+      Source on GitHub
+    </a>
+  );
+}
+
+function Kind({ project }: { project: Project }) {
+  return <p className="text-2xs font-medium tracking-wide text-brand uppercase">{project.kind}</p>;
+}
+
+/** Tall card, one column */
+function ProjectCard({ project, stats }: { project: Project; stats: ProjectStats }) {
+  return (
+    <div className="brand-card relative flex h-full flex-col rounded-sm border p-4">
+      <div className="mb-3 flex items-center gap-3">
+        <ProjectIcon project={project} />
+        <Kind project={project} />
+      </div>
+
+      <h3 className="mb-2 text-lg">
+        <ProjectLink project={project} />
+      </h3>
+
+      <p className="mb-4 text-muted">{project.description}</p>
+
+      <div className="mt-auto flex flex-col items-start gap-3">
+        <Stats stats={stats} />
+        <SourceLink project={project} />
+      </div>
+    </div>
+  );
+}
+
+/** Short card across both columns, for smaller projects; stacks like a normal card on phones */
+function CompactProjectCard({ project, stats }: { project: Project; stats: ProjectStats }) {
+  return (
+    <div className="brand-card relative flex flex-col gap-3 rounded-sm border p-4 sm:flex-row sm:items-center sm:gap-4">
+      <ProjectIcon project={project} />
+
+      <div className="flex-1">
+        <div className="mb-1 flex flex-wrap items-baseline gap-x-2">
+          <h3 className="text-lg leading-tight">
+            <ProjectLink project={project} />
+          </h3>
+          <Kind project={project} />
+        </div>
+        <p className="text-muted">{project.description}</p>
+      </div>
+
+      <div className="flex flex-col items-start gap-2 sm:items-end">
+        <Stats stats={stats} />
+        <SourceLink project={project} />
+      </div>
+    </div>
+  );
+}
+
 export default async function Projects() {
   const stats = await Promise.all(projects.map(getProjectStats));
 
@@ -52,51 +140,13 @@ export default async function Projects() {
         {/* Cards keep the full width: the offset shadows (max 12px) fit in the page's side margin */}
         <ul className="grid gap-6 pb-3 sm:grid-cols-2">
           {projects.map((project, index) => (
-            <li key={project.name} className="group">
+            <li key={project.name} className={`group ${project.compact ? "sm:col-span-2" : ""}`}>
               <ShadowFrame brand={project.brand} className="h-full">
-                <div className="brand-card relative flex h-full flex-col rounded-sm border p-4">
-                  <div className="mb-3 flex items-center gap-3">
-                    <Image
-                      src={project.icon}
-                      alt=""
-                      width={40}
-                      height={40}
-                      // The image optimizer doesn't process SVGs; they're small and sharp as is
-                      unoptimized={project.icon.endsWith(".svg")}
-                      className="h-10 w-10 rounded-xl shadow-sm"
-                    />
-                    <p className="text-2xs font-medium tracking-wide uppercase text-brand">{project.kind}</p>
-                  </div>
-
-                  <h3 className="mb-2 text-lg">
-                    {/* Stretched link: the whole card is clickable */}
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="after:absolute after:inset-0"
-                    >
-                      {project.name}
-                    </a>
-                  </h3>
-
-                  <p className="mb-4 text-muted">{project.description}</p>
-
-                  <div className="mt-auto flex flex-col gap-3">
-                    <Stats stats={stats[index]} />
-
-                    {project.github && (
-                      <a
-                        href={`https://github.com/${project.github}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative z-10 self-start text-2xs text-muted underline-offset-2 hover:text-accent hover:underline"
-                      >
-                        Source on GitHub
-                      </a>
-                    )}
-                  </div>
-                </div>
+                {project.compact ? (
+                  <CompactProjectCard project={project} stats={stats[index]} />
+                ) : (
+                  <ProjectCard project={project} stats={stats[index]} />
+                )}
               </ShadowFrame>
             </li>
           ))}
