@@ -16,6 +16,9 @@ function Stats({ stats }: { stats: ProjectStats }) {
   if (stats.installs !== undefined) {
     items.push({ icon: "download", value: compact.format(stats.installs), label: "installs" });
   }
+  if (stats.downloads !== undefined) {
+    items.push({ icon: "download", value: compact.format(stats.downloads), label: "downloads on npm" });
+  }
   if (stats.rating !== undefined && stats.ratingCount) {
     const reviews = `${stats.ratingCount} ${stats.ratingCount === 1 ? "review" : "reviews"}`;
     items.push({ icon: "star", value: stats.rating.toFixed(1), label: `rating (${reviews})` });
@@ -58,6 +61,8 @@ export default async function Projects() {
                       alt=""
                       width={40}
                       height={40}
+                      // The image optimizer doesn't process SVGs; they're small and sharp as is
+                      unoptimized={project.icon.endsWith(".svg")}
                       className="h-10 w-10 rounded-xl shadow-sm"
                     />
                     <p className="text-2xs font-medium tracking-wide uppercase text-brand">{project.kind}</p>

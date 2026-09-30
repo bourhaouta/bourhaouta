@@ -12,7 +12,7 @@ const links: { icon: IconName; label: string; url: string }[] = [
 
 export default function SocialLinks({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex space-x-3 ${className}`}>
+    <ul className={`flex gap-1 ${className}`}>
       {links.map((link) => (
         <li key={link.icon}>
           <SocialIconLink {...link} />

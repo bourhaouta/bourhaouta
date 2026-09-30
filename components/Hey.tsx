@@ -67,7 +67,7 @@ export default function Hey() {
       </div>
 
       {/* Icons, then the resume link after a thin divider */}
-      <div className="site-container flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-8">
+      <div className="site-container flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-4">
         <SocialLinks className="-ml-2" />
         <span aria-hidden className="h-4 w-px bg-line" />
         <Link
