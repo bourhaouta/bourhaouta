@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { formatPeriod, jobs, yearsOfExperience, type Job } from "@/lib/experience";
+import Button from "./Button";
 import Heading from "./Heading";
 import ShadowFrame from "./ShadowFrame";
 
@@ -150,6 +151,10 @@ export default function Experience() {
             <PastJob key={job.company} job={job} />
           ))}
         </ol>
+
+        <div className="mt-12 flex justify-center">
+          <Button to="/cv">View full CV</Button>
+        </div>
       </div>
     </section>
   );
