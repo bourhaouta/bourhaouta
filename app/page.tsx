@@ -2,6 +2,7 @@ import Articles from "@/components/Articles";
 import Button from "@/components/Button";
 import Hey from "@/components/Hey";
 import Pens from "@/components/Pens";
+import Projects from "@/components/Projects";
 import Shell from "@/components/Shell";
 import { getPens } from "@/lib/pens";
 import { getPosts } from "@/lib/posts";
@@ -41,6 +42,8 @@ export default async function HomePage() {
             </div>
           }
         />
+
+        <Projects />
 
         <Pens pens={pens} />
       </div>

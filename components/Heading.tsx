@@ -15,7 +15,7 @@ export default function Heading({ caption, noMargin, isLight, className = "", as
       <span
         aria-hidden
         className={`-mb-4 text-4xl leading-none font-light tracking-widest select-none ${
-          isLight ? "text-white/50" : "text-secondary-100"
+          isLight ? "text-white/50" : "text-faint"
         }`}
       >
         {caption}
