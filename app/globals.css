@@ -188,7 +188,17 @@
 
   /* With a brand color: soft tint at rest, full color on hover (works in light and dark) */
   .shadow-frame-brand .shadow-frame-shadow {
-    background-color: color-mix(in srgb, var(--brand) 35%, var(--page));
+    background-color: var(--brand-rest, color-mix(in srgb, var(--brand) 35%, var(--page)));
+  }
+
+  /* Some colors look muddy when mixed with the dark page (yellow turns olive) */
+  @media (prefers-color-scheme: dark) {
+    .shadow-frame-brand .shadow-frame-shadow {
+      background-color: var(
+        --brand-rest-dark,
+        var(--brand-rest, color-mix(in srgb, var(--brand) 35%, var(--page)))
+      );
+    }
   }
 
   .shadow-frame-brand:hover .shadow-frame-shadow,

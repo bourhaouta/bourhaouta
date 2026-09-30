@@ -1,5 +1,6 @@
 import Articles from "@/components/Articles";
 import Button from "@/components/Button";
+import Experience from "@/components/Experience";
 import Hey from "@/components/Hey";
 import Pens from "@/components/Pens";
 import Projects from "@/components/Projects";
@@ -34,6 +35,10 @@ export default async function HomePage() {
       <div className="space-y-16">
         <Hey />
 
+        <Experience />
+
+        <Projects />
+
         <Articles
           posts={posts}
           footer={
@@ -42,8 +47,6 @@ export default async function HomePage() {
             </div>
           }
         />
-
-        <Projects />
 
         <Pens pens={pens} />
       </div>
