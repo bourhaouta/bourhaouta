@@ -118,7 +118,7 @@ function FeaturedJob({ job }: { job: Job & { featured: Featured } }) {
 /** What's next, shown above the latest job while site.status is set */
 function Now({ status }: { status: string }) {
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-sm border border-dashed p-4 sm:px-5">
+    <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-sm border border-dashed bg-page p-4 sm:px-5">
       <div className="flex-1 basis-64">
         <p className="mb-0.5 flex items-center gap-2 text-2xs font-medium tracking-wide text-green-600 uppercase dark:text-green-400">
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-green-500" />
@@ -165,20 +165,27 @@ export default function Experience() {
       <div className="site-container">
         <Heading caption="Experience">{yearsOfExperience} years building product-focused web apps</Heading>
 
-        {site.status && <Now status={site.status} />}
+        <div className="relative">
+          {/* Timeline line from the Now block down to the last job; the blocks
+              above the past jobs have solid backgrounds and hide it */}
+          <span aria-hidden className="absolute inset-y-0 left-1 -z-1 w-px bg-line" />
 
-        {/* Cards keep the full width: the offset shadow (max 12px) fits in the page's side margin */}
-        <div className="space-y-6 pb-3">
-          {featured.map((job) => (
-            <FeaturedJob key={job.company} job={job} />
-          ))}
+          {site.status && <Now status={site.status} />}
+
+          {/* Cards keep the full width: the offset shadow (max 12px) fits in the page's side margin */}
+          <div className="space-y-6 pb-3">
+            {featured.map((job) => (
+              <FeaturedJob key={job.company} job={job} />
+            ))}
+          </div>
+
+          {/* Transparent border keeps the dots centered on the line above */}
+          <ol className="mt-8 ml-1 space-y-6 border-l border-transparent">
+            {past.map((job) => (
+              <PastJob key={job.company} job={job} />
+            ))}
+          </ol>
         </div>
-
-        <ol className="mt-8 ml-1 space-y-6 border-l border-line">
-          {past.map((job) => (
-            <PastJob key={job.company} job={job} />
-          ))}
-        </ol>
 
         <div className="mt-12 flex justify-center">
           <Button to="/resume">View full resume</Button>
