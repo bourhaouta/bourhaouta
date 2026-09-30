@@ -7,7 +7,7 @@ import Button from "./Button";
 import Icon from "./Icon";
 
 const inputClass =
-  "block w-full px-4 leading-tight text-gray-700 bg-white transition-colors duration-200 border rounded-sm appearance-none focus:outline-hidden focus:border-secondary-200";
+  "block w-full px-4 leading-tight text-gray-700 bg-field transition-colors duration-200 border rounded-sm appearance-none placeholder:text-muted/60 focus:outline-hidden focus:border-secondary-200 dark:text-ink dark:focus:border-secondary-400";
 const labelClass = "block mb-1 font-medium tracking-wide cursor-pointer";
 
 const initialState: ContactState = { status: "idle" };
@@ -78,7 +78,7 @@ export default function ContactForm() {
 
       <div className="flex items-center justify-end gap-4 sm:col-span-2">
         {state.status === "error" && (
-          <p role="alert" className="text-primary-600">
+          <p role="alert" className="text-accent">
             {state.message}
           </p>
         )}

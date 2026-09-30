@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import ArticleCard from "@/components/ArticleCard";
+import CoverTransition from "@/components/CoverTransition";
+import Heading from "@/components/Heading";
 import Shell from "@/components/Shell";
 import { alternates, baseOpenGraph, baseTwitter } from "@/lib/metadata";
 import { getLocalPost, getPosts, renderMarkdown } from "@/lib/posts";
@@ -45,6 +48,9 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   if (!post) notFound();
 
   const html = await renderMarkdown(post.content);
+  const morePosts = getPosts()
+    .filter((other) => other.slug !== post.slug)
+    .slice(0, 2);
 
   const article = {
     "@context": "https://schema.org",
@@ -66,7 +72,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
         <header className="site-container mb-6 text-center">
           <h1 className="mb-3 font-serif text-4xl font-bold">{post.title}</h1>
 
-          <p className="flex items-center justify-center gap-1 text-secondary-400">
+          <p className="flex items-center justify-center gap-1 text-muted">
             <time dateTime={post.date}>{post.formattedDate}</time>
             <span aria-hidden>&middot;</span>
             <span>{post.timeToRead} min read</span>
@@ -75,7 +81,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           {post.tags.length > 0 && (
             <ul className="mt-3 flex flex-wrap justify-center gap-2" aria-label="Tags">
               {post.tags.map((tag) => (
-                <li key={tag} className="rounded-full bg-gray-200 px-2 py-0.5 text-2xs">
+                <li key={tag} className="rounded-full bg-surface px-2 py-0.5 text-2xs">
                   {tag}
                 </li>
               ))}
@@ -84,8 +90,10 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
         </header>
 
         {post.cover && (
-          <div className="ratio mx-auto max-w-5xl rounded-sm">
-            <Image src={post.cover} alt="" fill sizes="(max-width: 1024px) 100vw, 1024px" preload />
+          <div className="ratio mx-auto max-w-5xl rounded-sm bg-surface">
+            <CoverTransition slug={post.slug}>
+              <Image src={post.cover} alt="" fill sizes="(max-width: 1024px) 100vw, 1024px" preload />
+            </CoverTransition>
           </div>
         )}
 
@@ -93,6 +101,22 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </article>
+
+      {morePosts.length > 0 && (
+        <aside className="site-container mt-16 border-t pt-10" aria-labelledby="keep-reading">
+          <Heading caption="More" as="h2">
+            <span id="keep-reading">Keep reading</span>
+          </Heading>
+
+          <ul className="grid gap-10">
+            {morePosts.map((other) => (
+              <li key={other.slug}>
+                <ArticleCard post={other} />
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
     </Shell>
   );
 }

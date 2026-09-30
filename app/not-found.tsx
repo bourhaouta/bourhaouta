@@ -16,7 +16,7 @@ export default function NotFound() {
           This page could not be found
         </Heading>
 
-        <p className="mb-8 text-sm text-secondary-400">It may have moved, or the link may be wrong.</p>
+        <p className="mb-8 text-sm text-muted">It may have moved, or the link may be wrong.</p>
 
         <div className="flex justify-center gap-4">
           <Button to="/">Go home</Button>

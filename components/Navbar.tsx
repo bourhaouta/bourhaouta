@@ -14,7 +14,7 @@ export default function Navbar({ back }: { back?: Back }) {
         <div>
           {back && (
             <Link
-              className="inline-flex h-8 w-8 items-center justify-center rounded hover:bg-gray-200"
+              className="inline-flex h-8 w-8 items-center justify-center rounded transition-colors hover:bg-surface"
               href={back.path}
               title={back.title}
               aria-label={`Back to ${back.title}`}
