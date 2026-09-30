@@ -110,7 +110,7 @@ function ProjectCard({ project, stats }: { project: Project; stats: ProjectStats
 /** Short card across both columns, for smaller projects; stacks like a normal card on phones */
 function CompactProjectCard({ project, stats }: { project: Project; stats: ProjectStats }) {
   return (
-    <div className="brand-card relative flex flex-col gap-3 rounded-sm border p-4 sm:flex-row sm:items-center sm:gap-4">
+    <div className="brand-card relative flex flex-col gap-3 rounded-sm border p-4 sm:flex-row sm:items-start sm:gap-4">
       <ProjectIcon project={project} />
 
       <div className="flex-1">
