@@ -120,12 +120,13 @@ function CompactProjectCard({ project, stats }: { project: Project; stats: Proje
           </h3>
           <Kind project={project} />
         </div>
+        {/* Full width; the numbers go on their own row below, aligned right */}
         <p className="text-muted">{project.description}</p>
-      </div>
 
-      <div className="flex flex-col items-start gap-2 sm:items-end">
-        <Stats stats={stats} />
-        <SourceLink project={project} />
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 sm:justify-end">
+          <Stats stats={stats} />
+          <SourceLink project={project} />
+        </div>
       </div>
     </div>
   );

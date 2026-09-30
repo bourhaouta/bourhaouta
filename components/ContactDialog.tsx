@@ -1,10 +1,12 @@
 "use client";
 
 import { useRef, type MouseEvent } from "react";
+import Image from "next/image";
 import { site } from "@/lib/site";
 import ContactForm from "./ContactForm";
 import Heading from "./Heading";
 import Icon from "./Icon";
+import sky from "@/public/images/sky.png";
 
 /**
  * "Contact" button that opens the contact form in a native <dialog>.
@@ -36,6 +38,14 @@ export default function ContactDialog({ buttonClassName }: { buttonClassName: st
         aria-labelledby="contact-dialog-title"
         className="contact-dialog m-auto w-[calc(100%-2rem)] max-w-lg rounded-sm border bg-page p-0 text-xs font-normal tracking-normal text-ink normal-case shadow-2xl backdrop:bg-secondary-900/50 backdrop:backdrop-blur-sm"
       >
+        {/* Same sky as the footer: behind the bottom of the dialog, fading out at the top */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[85%] [mask-image:linear-gradient(to_bottom,transparent,black_35%)] dark:hidden"
+        >
+          <Image className="object-cover object-bottom" src={sky} alt="" fill sizes="512px" />
+        </div>
+
         <div className="relative p-6 sm:p-8">
           <button
             type="button"
