@@ -116,9 +116,17 @@ function FeaturedJob({ job }: { job: Job & { featured: Featured } }) {
 
 function PastJob({ job }: { job: Job }) {
   return (
-    <li className="relative pl-5">
-      {/* Timeline dot on the vertical line */}
-      <span aria-hidden className="absolute top-0.5 -left-[4.5px] h-2 w-2 rounded-full border-2 border-page bg-secondary-300" />
+    <li className="group relative pl-5">
+      {/* Soft block on hover, like the article cards */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-1 -my-3 ml-2 -mr-3 rounded-sm bg-glow opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      />
+      {/* Timeline dot on the vertical line; turns red while its job is hovered */}
+      <span
+        aria-hidden
+        className="absolute top-0.5 -left-[4.5px] h-2 w-2 rounded-full border-2 border-page bg-secondary-300 transition-colors duration-300 group-hover:bg-accent"
+      />
       <p className="mb-0.5 text-2xs tracking-wide text-muted uppercase">{formatPeriod(job)}</p>
       <h3 className="text-base leading-snug">
         <Company job={job} /> <span className="text-muted">&middot; {job.role}</span>

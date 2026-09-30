@@ -13,13 +13,14 @@ const links: { label: string; href: Route; page?: string }[] = [
   { label: "Resume", href: "/resume", page: "/resume" },
 ];
 
-const linkClass = "py-1 transition-colors hover:text-accent-hover";
+// Same box for links and the Contact button, so they line up
+const linkClass = "block py-1 leading-normal transition-colors hover:text-accent-hover";
 
 export default function NavLinks() {
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-2xs font-medium tracking-widest uppercase">
+    <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-2xs font-medium tracking-widest uppercase">
       {links.map(({ label, href, page }) => {
         const current = page !== undefined && pathname.startsWith(page);
         return (
