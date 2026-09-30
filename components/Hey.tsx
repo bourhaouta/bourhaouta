@@ -6,9 +6,29 @@ import ShadowFrame from "./ShadowFrame";
 import SocialLinks from "./SocialLinks";
 import rabat from "@/public/images/rabat.png";
 
+// Both maps use the same `sizes`, so the browser downloads the image once
+const mapSizes = "(min-width: 640px) 304px, 100vw";
+
 export default function Hey() {
   return (
-    <header>
+    <header className="relative overflow-hidden py-10 sm:overflow-visible sm:py-0">
+      {/* Phones: full-width map behind the intro. Page color at the top left fades
+          to the bottom right so the text stays readable; top and bottom edges fade out. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-1 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_70%,transparent)] sm:hidden"
+      >
+        <Image
+          className="h-full w-full object-cover object-right opacity-75 dark:opacity-40"
+          src={rabat}
+          alt=""
+          fill
+          sizes={mapSizes}
+          preload
+        />
+        <div className="absolute inset-0 bg-linear-to-br from-page from-30% to-transparent" />
+      </div>
+
       <div className="site-container relative flex items-center">
         <div className="relative z-10 mt-2 mb-4">
           <h1 className="text-lg font-light">
@@ -36,15 +56,16 @@ export default function Hey() {
             </Link>
           </p>
         </div>
-        {/* Faded behind the text on phones (no shadow), next to it with the moving shadow from sm up */}
-        <ShadowFrame className="absolute inset-y-0 right-0 mr-4 w-[calc(100%-2rem)] sm:w-1/2 [&>.shadow-frame-shadow]:hidden sm:[&>.shadow-frame-shadow]:block">
+
+        {/* From sm up: map card on the right with the moving shadow */}
+        <ShadowFrame className="absolute inset-y-0 right-0 mr-4 hidden w-1/2 sm:block">
           {/* Solid background so the faded map doesn't let the shadow show through */}
           <div className="h-full overflow-hidden rounded-sm bg-page">
             <Image
-              className="h-full w-full object-cover opacity-25 sm:opacity-75 dark:opacity-15 dark:sm:opacity-40"
+              className="h-full w-full object-cover opacity-75 dark:opacity-40"
               src={rabat}
               alt=""
-              sizes="(min-width: 640px) 304px, 100vw"
+              sizes={mapSizes}
               preload
             />
           </div>
