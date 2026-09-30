@@ -57,7 +57,8 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: post.cover,
+    // Local covers are paths; structured data needs full URLs
+    image: post.cover && absoluteUrl(post.cover),
     datePublished: post.date,
     keywords: post.tags.join(", "),
     url: absoluteUrl(`/blog/${post.slug}/`),
