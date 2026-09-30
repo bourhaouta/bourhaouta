@@ -5,7 +5,7 @@ export type Job = {
   location: string;
   /** "YYYY-MM" */
   start: string;
-  /** "YYYY-MM", or undefined for the current job */
+  /** "YYYY-MM", or undefined for a current job */
   end?: string;
   summary: string;
   /** Metafy: shown on the home page card. Past jobs: shown on the resume only */
@@ -38,13 +38,14 @@ export const jobs: Job[] = [
     role: "Frontend Engineer",
     location: "Remote",
     start: "2021-02",
+    end: "2026-08",
     summary: "The gaming community where players learn from the best creators and coaches.",
     highlights: [
-      "Owned the checkout for 5+ years: payments, discounts, credits, subscriptions, upsells, and a major redesign.",
+      "Owned the checkout: payments, discounts, credits, subscriptions, upsells, and a major redesign.",
       "Helped build Memberships 2.0: tiered subscriptions with benefits, discounts, Discord roles, and upgrade/downgrade flows.",
       "Drove several generations of coaching: scheduling, availability, calendars, timezones, rescheduling, and member-only sessions.",
       "Built video playback for coaching reviews and lessons, through HLS streaming, iOS quirks, and fullscreen behavior.",
-      "Contributed to backend work in the Ruby on Rails/GraphQL stack, owning features end to end beyond the frontend.",
+      "Contributed to backend work in the Ruby on Rails/GraphQL stack to ship features end to end.",
       "Worked on frontend foundations used across the product: navigation, Storybook/Histoire, theming, shared components, and icons.",
     ],
     stack: ["TypeScript", "Svelte/SvelteKit", "React", "GraphQL", "Ruby on Rails", "Storybook"],
@@ -69,15 +70,15 @@ export const jobs: Job[] = [
     start: "2019-12",
     end: "2021-01",
     summary:
-      "Built the Guest Checkout flow and its REST API integrations while a Hybris/JSP platform moved to React, and fixed bugs in legacy AngularJS and jQuery code.",
+      "Built the Guest Checkout flow and its REST API integrations for Nespresso while its Hybris/JSP platform moved to React, and fixed bugs in legacy AngularJS and jQuery code.",
     highlights: [
-      "Worked on a Hybris/JSP platform during its migration to React, building the Guest Checkout flow and its REST API integrations.",
+      "Worked on Nespresso's Hybris/JSP platform during its migration to React, building the Guest Checkout flow and its REST API integrations.",
       "Fixed bugs across the wider platform, including legacy AngularJS and jQuery code, contributing to the modernization effort.",
     ],
     stack: ["React", "REST APIs", "AngularJS"],
   },
   {
-    company: "Avito Adevinta",
+    company: "Avito.ma (Adevinta)",
     url: "https://www.avito.ma",
     role: "Frontend Engineer",
     location: "Casablanca",

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { formatPeriod, jobs, yearsOfExperience, type Job } from "@/lib/experience";
+import { site } from "@/lib/site";
 import Button from "./Button";
 import Heading from "./Heading";
 import ShadowFrame from "./ShadowFrame";
@@ -114,6 +115,23 @@ function FeaturedJob({ job }: { job: Job & { featured: Featured } }) {
   );
 }
 
+/** What's next, shown above the latest job while site.status is set */
+function Now({ status }: { status: string }) {
+  return (
+    <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-sm border border-dashed p-4 sm:px-5">
+      <div className="flex-1 basis-64">
+        <p className="mb-0.5 flex items-center gap-2 text-2xs font-medium tracking-wide text-green-600 uppercase dark:text-green-400">
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-green-500" />
+          Now
+        </p>
+        <h3 className="text-base leading-snug">{status}</h3>
+        <p className="text-muted">{site.availability}</p>
+      </div>
+      <Button href="/#contact">Get in touch</Button>
+    </div>
+  );
+}
+
 function PastJob({ job }: { job: Job }) {
   return (
     <li className="group relative pl-5">
@@ -146,6 +164,8 @@ export default function Experience() {
     <section id="experience" className="scroll-mt-8">
       <div className="site-container">
         <Heading caption="Experience">{yearsOfExperience} years building product-focused web apps</Heading>
+
+        {site.status && <Now status={site.status} />}
 
         {/* Cards keep the full width: the offset shadow (max 12px) fits in the page's side margin */}
         <div className="space-y-6 pb-3">

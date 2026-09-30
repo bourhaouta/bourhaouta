@@ -8,7 +8,7 @@ export default function PrintButton() {
   return (
     <Button type="button" onClick={() => window.print()}>
       <Icon name="download" />
-      <span className="ml-2">Download PDF</span>
+      <span className="ml-2">Save as PDF</span>
     </Button>
   );
 }

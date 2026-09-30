@@ -20,7 +20,7 @@ export default function NavLinks() {
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-2xs font-medium tracking-widest uppercase">
+    <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-2xs sm:gap-x-5 font-medium tracking-widest uppercase">
       {links.map(({ label, href, page }) => {
         const current = page !== undefined && pathname.startsWith(page);
         return (

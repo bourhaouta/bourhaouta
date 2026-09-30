@@ -3,7 +3,7 @@ import { yearsOfExperience } from "./experience";
 // From the resume. Jobs live in lib/experience.ts. The phone number is left out
 // on purpose: this page is public.
 export const resume = {
-  summary: `Software engineer with ${yearsOfExperience} years of experience building product-focused web apps, including 5+ years at Metafy working across checkout, subscriptions, coaching, and frontend infrastructure. Strong in TypeScript, Svelte/SvelteKit, React, and GraphQL, with experience working across frontend and backend and owning features end to end.`,
+  summary: `Software engineer with ${yearsOfExperience} years of experience building product-focused web apps, including 5+ years at Metafy owning projects across checkout, subscriptions, coaching, and frontend infrastructure. Strong in TypeScript, Svelte/SvelteKit, React, and GraphQL, with backend experience in Ruby on Rails/GraphQL to ship features end to end.`,
 
   skills: [
     { group: "Frontend", items: ["TypeScript", "JavaScript", "Svelte/SvelteKit", "React", "Next.js", "Vue/Nuxt"] },

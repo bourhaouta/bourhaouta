@@ -8,8 +8,10 @@ export const site = {
   twitter: "@bourhaouta",
   // Forwards to Gmail through ImprovMX
   email: "contact@bourhaouta.com",
-  // Shown under the intro with a green dot; set to undefined to hide it
+  // Shown under the intro with a green dot, and as a "Now" block above the
+  // experience; set to undefined to hide both
   status: "Open to new opportunities" as string | undefined,
+  availability: "Looking for a frontend-focused product role. Full-time or freelance, remote from Rabat (GMT+1).",
   socials: {
     twitter: "https://twitter.com/bourhaouta",
     github: "https://github.com/bourhaouta",

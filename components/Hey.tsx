@@ -36,6 +36,7 @@ export default function Hey() {
             I&apos;m <strong className="font-normal text-accent">{site.name}</strong>, a Software Engineer.
             <br />I build product-focused web apps, end to end.
           </h1>
+          <p className="mt-2 text-muted">Based in Rabat, Morocco &middot; Open to remote work</p>
 
           {site.status && (
             <a

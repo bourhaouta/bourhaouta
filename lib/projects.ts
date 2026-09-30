@@ -64,7 +64,7 @@ export const projects: Project[] = [
     name: "hotory",
     kind: "Utility CSS",
     description:
-      "A small, utility-first CSS toolkit built on Stylus in 2018, before Tailwind took off: a lighter alternative to Bootstrap with readable classes like `is-flex:column` and `hover:has-color:primary`, and themeable variables. Made for internal projects and still in use today.",
+      "A small, utility-first CSS toolkit built on Stylus in 2018, before Tailwind took off: a lighter alternative to Bootstrap with readable classes like `is-flex:column` and `hover:has-color:primary`, and themeable variables. Made for internal projects.",
     url: "https://www.npmjs.com/package/hotory",
     icon: "/images/projects/hotory.svg",
     brand: "#f97316",

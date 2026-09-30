@@ -6,15 +6,16 @@ import Heading from "./Heading";
 type Props = {
   posts: Post[];
   footer?: ReactNode;
+  caption?: string;
   // Use "h1" when the list is the main content of the page
   headingAs?: ElementType;
 };
 
-export default function Articles({ posts, footer, headingAs = "h2" }: Props) {
+export default function Articles({ posts, footer, caption = "Articles", headingAs = "h2" }: Props) {
   return (
     <section>
       <div className="site-container">
-        <Heading caption="Articles" as={headingAs}>
+        <Heading caption={caption} as={headingAs}>
           Mostly talking about CSS
         </Heading>
 

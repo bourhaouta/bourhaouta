@@ -41,6 +41,7 @@ export default async function HomePage() {
 
         <Articles
           posts={posts}
+          caption="Selected writing"
           footer={
             <div className="mt-12 flex justify-center">
               <Button to="/blog">Read more articles</Button>
