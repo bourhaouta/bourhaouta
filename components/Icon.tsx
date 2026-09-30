@@ -19,7 +19,8 @@ export type IconName = keyof typeof paths;
 
 export default function Icon({ name, size = 16 }: { name: IconName; size?: number }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24">
+    // Decorative: the parent link or button carries the label
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable="false">
       <path className="fill-current" d={paths[name]} />
     </svg>
   );

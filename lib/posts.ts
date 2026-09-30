@@ -1,10 +1,13 @@
+import "server-only";
 import fs from "node:fs";
 import path from "node:path";
+import { cache } from "react";
 import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypePrism from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 
 const BLOG_DIR = path.join(process.cwd(), "blog");
@@ -20,6 +23,7 @@ export type Post = {
   cover?: string;
   excerpt: string;
   external?: string;
+  tags: string[];
   timeToRead: number;
   content: string;
 };
@@ -59,18 +63,20 @@ function readPost(filePath: string): Post | null {
     cover: data.cover,
     excerpt: excerpt?.trim() ?? "",
     external: data.external,
+    tags: Array.isArray(data.tags) ? data.tags : [],
     timeToRead: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
     // Drop the excerpt separator so it does not render as a <hr>
     content: excerpt ? content.replace(/^---\s*$/m, "") : content,
   };
 }
 
-export function getPosts(): Post[] {
-  return listMarkdownFiles(BLOG_DIR)
+// Cached so pages, metadata and OG images share one read per request
+export const getPosts = cache((): Post[] =>
+  listMarkdownFiles(BLOG_DIR)
     .map(readPost)
     .filter((post): post is Post => post !== null)
-    .sort((a, b) => b.date.localeCompare(a.date));
-}
+    .sort((a, b) => b.date.localeCompare(a.date)),
+);
 
 // Only posts hosted on this site get their own page
 export function getLocalPost(slug: string): Post | undefined {
@@ -81,6 +87,7 @@ export async function renderMarkdown(markdown: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
+    .use(rehypeSlug)
     .use(rehypePrism, { ignoreMissing: true })
     .use(rehypeStringify)
     .process(markdown);

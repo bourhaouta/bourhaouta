@@ -72,6 +72,26 @@
   ::after {
     border-color: var(--color-gray-300);
   }
+
+  /* Clear focus ring for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Keep linked headings clear of the top edge */
+  :target {
+    scroll-margin-top: 2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
 }
 
 @utility site-container {

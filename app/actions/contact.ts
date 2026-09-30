@@ -1,27 +1,34 @@
 "use server";
 
 import { Resend } from "resend";
-
-export type ContactState = {
-  status: "idle" | "success" | "error";
-  message?: string;
-  // Sent back on error so the form keeps what the user typed
-  fields?: { name: string; email: string; message: string };
-};
+import { CONTACT_LIMITS, type ContactState } from "@/lib/contact";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function field(formData: FormData, key: string): string {
+  return String(formData.get(key) ?? "").trim();
+}
 
 export async function sendContact(_prev: ContactState, formData: FormData): Promise<ContactState> {
   // Honeypot: real people leave this empty
   if (formData.get("bot-field")) return { status: "success" };
 
-  const name = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
-  const message = String(formData.get("message") ?? "").trim();
+  // Collapse whitespace so the name is safe to use in the subject line
+  const name = field(formData, "name").replace(/\s+/g, " ");
+  const email = field(formData, "email");
+  const message = field(formData, "message");
   const fields = { name, email, message };
 
   if (!name || !message || !EMAIL_PATTERN.test(email)) {
     return { status: "error", message: "Please fill in your name, a valid email and a message.", fields };
+  }
+
+  if (
+    name.length > CONTACT_LIMITS.name ||
+    email.length > CONTACT_LIMITS.email ||
+    message.length > CONTACT_LIMITS.message
+  ) {
+    return { status: "error", message: "Your message is too long. Please make it shorter.", fields };
   }
 
   const { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env;
