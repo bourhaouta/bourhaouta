@@ -9,7 +9,7 @@ export type Back = { title: string; path: Route };
 
 export default function Navbar({ back }: { back?: Back }) {
   return (
-    <nav className="mb-4" aria-label="Main">
+    <nav className="mb-4 print:hidden" aria-label="Main">
       <div className="site-container grid h-32 grid-cols-3 items-center">
         <div>
           {back && (

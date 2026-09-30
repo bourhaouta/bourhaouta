@@ -8,7 +8,10 @@ export type Job = {
   /** "YYYY-MM", or undefined for the current job */
   end?: string;
   summary: string;
+  /** Metafy: shown on the home page card. Past jobs: shown on the CV only */
   highlights: string[];
+  /** Extra points shown on the CV only */
+  cvExtra?: string[];
   stack: string[];
   /** Featured jobs get a full card with logo, brand color and highlights */
   featured?: {
@@ -43,6 +46,9 @@ export const jobs: Job[] = [
       "Built video playback for coaching reviews and lessons, through HLS streaming, iOS quirks, and fullscreen behavior.",
       "Worked on frontend foundations used across the product: navigation, Storybook/Histoire, theming, shared components, and icons.",
     ],
+    cvExtra: [
+      "Worked in a product-driven engineering culture, prototyping ideas early and iterating directly with product and design before shipping.",
+    ],
     stack: ["TypeScript", "Svelte/SvelteKit", "React", "GraphQL", "Storybook"],
     // Metafy's dark UI (metafy.gg) with its yellow accent
     featured: {
@@ -66,7 +72,10 @@ export const jobs: Job[] = [
     end: "2021-01",
     summary:
       "Built the Guest Checkout flow and its REST API integrations while a Hybris/JSP platform moved to React, and fixed bugs in legacy AngularJS and jQuery code.",
-    highlights: [],
+    highlights: [
+      "Worked on a Hybris/JSP platform during its migration to React, building the Guest Checkout flow and its REST API integrations.",
+      "Fixed bugs across the wider platform, including legacy AngularJS and jQuery code, contributing to the modernization effort.",
+    ],
     stack: ["React", "REST APIs", "AngularJS"],
   },
   {
@@ -78,7 +87,10 @@ export const jobs: Job[] = [
     end: "2019-12",
     summary:
       "Built campaign and product experiences (Carrières, Boutiques, Guide ImmoNeuf, Digital Talks) and contributed to Avito's internal design system.",
-    highlights: [],
+    highlights: [
+      "Built campaign and product experiences with Next.js and Nuxt.js, including Carrières, Boutiques, Guide ImmoNeuf, and Digital Talks.",
+      "Contributed to Avito's internal design system using React, Redux, and Styled Components, while refactoring legacy frontend code.",
+    ],
     stack: ["Next.js", "Nuxt.js", "React", "Redux", "Styled Components"],
   },
   {
@@ -89,7 +101,10 @@ export const jobs: Job[] = [
     end: "2018-09",
     summary:
       "Worked on early versions of YouCan.shop, and built Telquel.ma's mobile SPA, ad integrations, and animated premium content.",
-    highlights: [],
+    highlights: [
+      "Worked on early versions of YouCan.shop using Laravel, Blade, Vue.js, and Sass.",
+      "Built Telquel.ma's mobile SPA with Vue.js and contributed to the desktop experience, ad integrations, and animated premium content.",
+    ],
     stack: ["Vue.js", "Laravel", "Sass"],
   },
 ];

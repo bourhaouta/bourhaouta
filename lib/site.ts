@@ -6,11 +6,16 @@ export const site = {
   url: "https://www.bourhaouta.com",
   locale: "en_US",
   twitter: "@bourhaouta",
+  // Forwards to Gmail through ImprovMX
+  email: "contact@bourhaouta.com",
+  // Shown under the intro with a green dot; set to undefined to hide it
+  status: "Open to new opportunities" as string | undefined,
   socials: {
     twitter: "https://twitter.com/bourhaouta",
     github: "https://github.com/bourhaouta",
     codepen: "https://codepen.io/bourhaouta",
     linkedin: "https://www.linkedin.com/in/bourhaouta",
+    cssTricks: "https://css-tricks.com/author/omarbourhaouta/",
   },
 };
 

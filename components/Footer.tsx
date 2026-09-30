@@ -7,13 +7,21 @@ import sky from "@/public/images/sky.png";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-20">
+    <footer id="contact" className="relative mt-20 scroll-mt-8 print:hidden">
       <Image className="absolute bottom-0 -z-1 dark:hidden" src={sky} alt="" sizes="100vw" />
 
       <div className="site-container sm:px-20">
         <Heading caption="Contact" className="items-center">
           Get in touch
         </Heading>
+
+        <p className="mb-6 text-center text-muted">
+          Email me at{" "}
+          <a href={`mailto:${site.email}`} className="text-accent underline-offset-2 hover:underline">
+            {site.email}
+          </a>{" "}
+          or send a message below.
+        </p>
 
         <ContactForm />
 

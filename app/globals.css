@@ -39,6 +39,8 @@
   --color-gray-900: #1a202c;
 
   --color-blue-600: #3182ce;
+  /* "Open to new opportunities" dot */
+  --color-green-500: #22c55e;
 
   /* v1 font sizes did not set a line-height */
   --text-*: initial;
@@ -113,6 +115,25 @@
     --glow: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
     --highlight: var(--color-primary-800);
   }
+}
+
+/* Printing (the CV's "Save as PDF"): black on white A4, whatever the color scheme */
+@media print {
+  :root {
+    --page: #fff;
+    --ink: #000;
+    --muted: #333;
+    --faint: #ccc;
+    --surface: #f2f2f2;
+    --line: #ccc;
+    --accent: #000;
+    --accent-hover: #000;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm 16mm;
 }
 
 @layer base {
