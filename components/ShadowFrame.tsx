@@ -12,6 +12,8 @@ type Props = {
   children: ReactNode;
   // Optional brand color: the shadow uses a soft tint of it, and the full color on hover
   brand?: string;
+  // Resting shadow color in dark mode, when the tint looks muddy on the dark page
+  brandRestDark?: string;
   className?: string;
 };
 
@@ -21,7 +23,7 @@ type Props = {
  * onto the shadow like a button. Only CSS variables change, so no React re-renders.
  * Styles live in app/globals.css (.shadow-frame).
  */
-export default function ShadowFrame({ children, brand, className = "" }: Props) {
+export default function ShadowFrame({ children, brand, brandRestDark, className = "" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   function move(event: PointerEvent<HTMLDivElement>) {
@@ -50,7 +52,11 @@ export default function ShadowFrame({ children, brand, className = "" }: Props) 
     <div
       ref={ref}
       className={`shadow-frame ${brand ? "shadow-frame-brand" : ""} ${className}`}
-      style={brand ? ({ "--brand": brand } as CSSProperties) : undefined}
+      style={
+        brand
+          ? ({ "--brand": brand, ...(brandRestDark && { "--brand-rest-dark": brandRestDark }) } as CSSProperties)
+          : undefined
+      }
       onPointerMove={move}
       onPointerLeave={reset}
     >

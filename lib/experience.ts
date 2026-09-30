@@ -11,7 +11,20 @@ export type Job = {
   highlights: string[];
   stack: string[];
   /** Featured jobs get a full card with logo, brand color and highlights */
-  featured?: { logo: string; brand: string };
+  featured?: {
+    logo: string;
+    /** Shadow, bullets and date color */
+    brand: string;
+    /** The company's own card colors, used in both light and dark mode */
+    theme?: {
+      background: string;
+      border: string;
+      text: string;
+      heading: string;
+      muted: string;
+      chip: string;
+    };
+  };
 };
 
 // From the resume. Newest first.
@@ -31,7 +44,19 @@ export const jobs: Job[] = [
       "Worked on frontend foundations used across the product: navigation, Storybook/Histoire, theming, shared components, and icons.",
     ],
     stack: ["TypeScript", "Svelte/SvelteKit", "React", "GraphQL", "Storybook"],
-    featured: { logo: "/images/companies/metafy.png", brand: "#e9a3c4" },
+    // Metafy's dark UI (metafy.gg) with its yellow accent
+    featured: {
+      logo: "/images/companies/metafy.png",
+      brand: "#fcd23e",
+      theme: {
+        background: "#0e0e11",
+        border: "#282834",
+        text: "#c0c0d1",
+        heading: "#ffffff",
+        muted: "#9494a8",
+        chip: "#1e1e27",
+      },
+    },
   },
   {
     company: "SQLI",
