@@ -13,8 +13,8 @@ export default function Hey() {
         <div className="relative z-10 mt-2 mb-4">
           <h1 className="text-lg font-light">
             <small className="mb-1 block text-2xl font-medium">Hey There,</small>
-            I&apos;m <strong className="font-normal text-accent">{site.name}</strong>, a Frontend Engineer.
-            <br />I build product-focused web apps.
+            I&apos;m <strong className="font-normal text-accent">{site.name}</strong>, a Software Engineer.
+            <br />I build product-focused web apps, end to end.
           </h1>
 
           <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">

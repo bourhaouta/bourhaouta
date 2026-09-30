@@ -44,12 +44,10 @@ export const jobs: Job[] = [
       "Helped build Memberships 2.0: tiered subscriptions with benefits, discounts, Discord roles, and upgrade/downgrade flows.",
       "Drove several generations of coaching: scheduling, availability, calendars, timezones, rescheduling, and member-only sessions.",
       "Built video playback for coaching reviews and lessons, through HLS streaming, iOS quirks, and fullscreen behavior.",
+      "Contributed to backend work in the Ruby on Rails/GraphQL stack, owning features end to end beyond the frontend.",
       "Worked on frontend foundations used across the product: navigation, Storybook/Histoire, theming, shared components, and icons.",
     ],
-    cvExtra: [
-      "Worked in a product-driven engineering culture, prototyping ideas early and iterating directly with product and design before shipping.",
-    ],
-    stack: ["TypeScript", "Svelte/SvelteKit", "React", "GraphQL", "Storybook"],
+    stack: ["TypeScript", "Svelte/SvelteKit", "React", "GraphQL", "Ruby on Rails", "Storybook"],
     // Metafy's dark UI (metafy.gg) with its yellow accent
     featured: {
       logo: "/images/companies/metafy.png",
