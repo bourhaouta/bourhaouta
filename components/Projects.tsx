@@ -52,6 +52,23 @@ function Stats({ stats, short = false }: { stats: ProjectStats; short?: boolean 
   );
 }
 
+/** Description text, with `backtick` parts shown as code */
+function Description({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("`").map((part, index) =>
+        index % 2 === 1 ? (
+          <code key={index} className="rounded-sm bg-surface px-1 font-mono text-[0.9em] whitespace-nowrap">
+            {part}
+          </code>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
 function ProjectIcon({ project }: { project: Project }) {
   return (
     <Image
@@ -108,7 +125,9 @@ function ProjectCard({ project, stats }: { project: Project; stats: ProjectStats
         <ProjectLink project={project} />
       </h3>
 
-      <p className="mb-4 text-muted">{project.description}</p>
+      <p className="mb-4 text-muted">
+        <Description text={project.description} />
+      </p>
 
       <div className="mt-auto flex flex-col items-start gap-3">
         <Stats stats={stats} />
@@ -140,7 +159,9 @@ function CompactProjectCard({ project, stats }: { project: Project; stats: Proje
           </div>
         </div>
 
-        <p className="text-muted">{project.description}</p>
+        <p className="text-muted">
+          <Description text={project.description} />
+        </p>
 
         {/* Phones: full numbers under the description */}
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 sm:hidden">

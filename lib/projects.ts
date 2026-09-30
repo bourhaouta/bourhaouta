@@ -3,6 +3,7 @@ import "server-only";
 export type Project = {
   name: string;
   kind: string;
+  /** `backticks` mark code, shown in a monospace font that doesn't break */
   description: string;
   url: string;
   // Local icon in /public and the color taken from it
@@ -61,9 +62,9 @@ export const projects: Project[] = [
   },
   {
     name: "hotory",
-    kind: "CSS framework",
+    kind: "Utility CSS",
     description:
-      "A naked, pure CSS framework built on Stylus. I made it for internal projects, and it's still in use today.",
+      "A small, utility-first CSS toolkit built on Stylus in 2018, before Tailwind took off: a lighter alternative to Bootstrap with readable classes like `is-flex:column` and `hover:has-color:primary`, and themeable variables. Made for internal projects and still in use today.",
     url: "https://www.npmjs.com/package/hotory",
     icon: "/images/projects/hotory.svg",
     brand: "#f97316",
