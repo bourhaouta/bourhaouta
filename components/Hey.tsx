@@ -11,7 +11,7 @@ export default function Hey() {
         <h1 className="relative z-10 mt-2 mb-4 text-lg font-light">
           <small className="mb-1 block text-2xl font-medium">Hey There,</small>
           I&apos;m <strong className="font-normal text-accent">{site.name}</strong>, a Frontend Engineer.
-          <span className="mt-2 block text-sm text-muted">I build product-focused web apps.</span>
+          <br />I build product-focused web apps.
         </h1>
         {/* Faded behind the text on phones (no shadow), next to it with the moving shadow from sm up */}
         <ShadowFrame className="absolute inset-y-0 right-0 mr-4 w-[calc(100%-2rem)] sm:w-1/2 [&>.shadow-frame-shadow]:hidden sm:[&>.shadow-frame-shadow]:block">
