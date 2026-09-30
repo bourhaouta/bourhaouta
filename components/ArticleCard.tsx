@@ -32,7 +32,43 @@ type Props = {
   titleAs?: ElementType;
 };
 
+/** Name and small logo of the site an external post was published on */
+function externalSource(url: string): { name: string; logo: ReactNode } {
+  const host = new URL(url).hostname.replace(/^www\./, "");
+
+  if (host === "css-tricks.com") {
+    return {
+      name: "CSS-Tricks",
+      logo: (
+        <Image
+          className="h-4 w-4 rounded-full object-cover object-center"
+          src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1544564316/Avatar_qr6vy9.png"
+          alt=""
+          width={16}
+          height={16}
+        />
+      ),
+    };
+  }
+
+  if (host === "dev.to") {
+    return {
+      name: "DEV Community",
+      // The DEV logo: white "DEV" on a black rounded square
+      logo: (
+        <span className="flex h-4 items-center rounded-sm bg-black px-1 text-[0.5rem] leading-none font-bold text-white">
+          DEV
+        </span>
+      ),
+    };
+  }
+
+  return { name: host, logo: null };
+}
+
 export default function ArticleCard({ post, titleAs: Title = "h3" }: Props) {
+  const source = post.external ? externalSource(post.external) : undefined;
+
   return (
     <article className="group relative grid items-start gap-4 sm:grid-cols-2 sm:gap-6">
       <div className="absolute inset-0 -z-1 -mt-3 mb-4 ml-3 -mr-3 rounded-sm bg-glow opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -52,7 +88,7 @@ export default function ArticleCard({ post, titleAs: Title = "h3" }: Props) {
         <Title className="-mt-1 mb-2 text-xl">
           <ArticleLink post={post} className="block transition-colors hover:text-accent-hover">
             {post.title}
-            {post.external && <span className="sr-only"> (opens CSS-Tricks in a new tab)</span>}
+            {source && <span className="sr-only"> (opens {source.name} in a new tab)</span>}
           </ArticleLink>
         </Title>
 
@@ -65,16 +101,10 @@ export default function ArticleCard({ post, titleAs: Title = "h3" }: Props) {
             <span>{post.timeToRead} min read</span>
           </div>
 
-          {post.external && (
-            <span className="flex items-center rounded-full bg-surface pr-2 whitespace-nowrap">
-              <Image
-                className="mr-1 h-4 w-4 rounded-full object-cover object-center"
-                src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1544564316/Avatar_qr6vy9.png"
-                alt=""
-                width={16}
-                height={16}
-              />
-              CSS-Tricks
+          {source && (
+            <span className="flex items-center gap-1 rounded-full bg-surface pr-2 whitespace-nowrap">
+              {source.logo ?? <span className="w-1" />}
+              {source.name}
             </span>
           )}
         </div>

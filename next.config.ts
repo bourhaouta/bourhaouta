@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "i.imgur.com" },
       { protocol: "https", hostname: "codepen.io" },
       { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "media2.dev.to" },
     ],
   },
   async headers() {

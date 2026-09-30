@@ -6,6 +6,7 @@ date: 2020-07-13
 cover: https://i.imgur.com/mncFX27.png
 tags: ["tutorial", "tailwind", "css"]
 comments: false
+devto: https://dev.to/bourhaouta/tailwind-container-the-right-way-5g77
 ---
 
 The container is just a div you can style with CSS. You can give it a fixed width, paddings on the inline edges and center it with margins. and it comes by with Tailwind's default configuration.
