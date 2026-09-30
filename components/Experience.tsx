@@ -139,8 +139,8 @@ export default function Experience() {
       <div className="site-container">
         <Heading caption="Experience">{yearsOfExperience} years building product-focused web apps</Heading>
 
-        {/* Right/bottom padding leaves room for the offset shadow */}
-        <div className="space-y-6 pr-3 pb-3">
+        {/* Cards keep the full width: the offset shadow (max 12px) fits in the page's side margin */}
+        <div className="space-y-6 pb-3">
           {featured.map((job) => (
             <FeaturedJob key={job.company} job={job} />
           ))}
@@ -153,7 +153,7 @@ export default function Experience() {
         </ol>
 
         <div className="mt-12 flex justify-center">
-          <Button to="/cv">View full CV</Button>
+          <Button to="/resume">View full resume</Button>
         </div>
       </div>
     </section>

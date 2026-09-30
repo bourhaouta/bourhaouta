@@ -7,15 +7,15 @@ import { alternates, baseOpenGraph, baseTwitter } from "@/lib/metadata";
 import { resume } from "@/lib/resume";
 import { site } from "@/lib/site";
 
-const description = `CV of ${site.name}, ${site.title}.`;
+const description = `Resume of ${site.name}, ${site.title}.`;
 
 export const metadata: Metadata = {
   // Also the default file name when saving as PDF
-  title: { absolute: `${site.name} - CV` },
+  title: { absolute: `${site.name} - Resume` },
   description,
-  alternates: alternates("/cv/"),
-  openGraph: { ...baseOpenGraph, type: "profile", title: `${site.name} - CV`, description, url: "/cv/" },
-  twitter: { ...baseTwitter, title: `${site.name} - CV`, description },
+  alternates: alternates("/resume/"),
+  openGraph: { ...baseOpenGraph, type: "profile", title: `${site.name} - Resume`, description, url: "/resume/" },
+  twitter: { ...baseTwitter, title: `${site.name} - Resume`, description },
 };
 
 // Printed as plain text; the URL itself is the useful part on paper
@@ -39,7 +39,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-export default function CvPage() {
+export default function ResumePage() {
   return (
     <Shell back={{ title: "Homepage", path: "/" }}>
       <article className="site-container text-sm leading-relaxed print:max-w-none print:px-0 print:text-[10.5pt] print:leading-snug print:text-black">

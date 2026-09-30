@@ -46,8 +46,8 @@ export default async function Projects() {
       <div className="site-container">
         <Heading caption="Projects">Things I&apos;ve built</Heading>
 
-        {/* Right/bottom padding leaves room for the offset shadows */}
-        <ul className="grid gap-6 pr-3 pb-3 sm:grid-cols-2">
+        {/* Cards keep the full width: the offset shadows (max 12px) fit in the page's side margin */}
+        <ul className="grid gap-6 pb-3 sm:grid-cols-2">
           {projects.map((project, index) => (
             <li key={project.name} className="group">
               <ShadowFrame brand={project.brand} className="h-full">

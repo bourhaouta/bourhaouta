@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async redirects() {
+    // The resume page used to live at /cv
+    return [{ source: "/cv", destination: "/resume/", permanent: true }];
+  },
 };
 
 export default nextConfig;

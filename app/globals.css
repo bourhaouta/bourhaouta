@@ -117,7 +117,7 @@
   }
 }
 
-/* Printing (the CV's "Save as PDF"): black on white A4, whatever the color scheme */
+/* Printing (the resume's "Save as PDF"): black on white A4, whatever the color scheme */
 @media print {
   :root {
     --page: #fff;

@@ -50,9 +50,9 @@ export default function Hey() {
                 {site.status}
               </a>
             )}
-            <Link href="/cv" className="inline-flex items-center gap-1 underline-offset-2 hover:text-accent-hover hover:underline">
+            <Link href="/resume" className="inline-flex items-center gap-1 underline-offset-2 hover:text-accent-hover hover:underline">
               <Icon name="file" size={14} />
-              View CV
+              View resume
             </Link>
           </p>
         </div>

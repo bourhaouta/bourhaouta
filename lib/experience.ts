@@ -8,9 +8,9 @@ export type Job = {
   /** "YYYY-MM", or undefined for the current job */
   end?: string;
   summary: string;
-  /** Metafy: shown on the home page card. Past jobs: shown on the CV only */
+  /** Metafy: shown on the home page card. Past jobs: shown on the resume only */
   highlights: string[];
-  /** Extra points shown on the CV only */
+  /** Extra points shown on the resume only */
   cvExtra?: string[];
   stack: string[];
   /** Featured jobs get a full card with logo, brand color and highlights */

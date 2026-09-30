@@ -10,7 +10,7 @@ const links: { label: string; href: Route | `#${string}`; page?: string }[] = [
   { label: "Work", href: "/#experience" as Route },
   { label: "Projects", href: "/#projects" as Route },
   { label: "Blog", href: "/blog", page: "/blog" },
-  { label: "CV", href: "/cv", page: "/cv" },
+  { label: "Resume", href: "/resume", page: "/resume" },
   { label: "Contact", href: "#contact" },
 ];
 
