@@ -1,8 +1,8 @@
 export const site = {
   name: "Omar Bourhaouta",
-  title: "Front-End Web Developer",
+  title: "Frontend Engineer",
   description:
-    "Omar Bourhaouta is a front-end web developer based in Rabat, Morocco, writing mostly about CSS.",
+    "Omar Bourhaouta is a frontend engineer based in Rabat, Morocco, building product-focused web apps.",
   url: "https://www.bourhaouta.com",
   locale: "en_US",
   twitter: "@bourhaouta",
