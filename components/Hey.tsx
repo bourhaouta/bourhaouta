@@ -10,19 +10,7 @@ export default function Hey() {
       <div className="site-container relative flex items-center">
         <h1 className="relative z-10 mt-2 mb-4 text-lg font-light">
           <small className="mb-1 block text-2xl font-medium">Hey There,</small>
-          I&apos;m <strong className="font-normal text-accent">{site.name}</strong>, a Frontend Engineer{" "}
-          {/* Line break on bigger screens only; phones wrap naturally */}
-          <br className="hidden sm:inline" />
-          based in{" "}
-          <a
-            className="hover:underline"
-            href="https://www.google.com/maps/place/Rabat/data=!4m2!3m1!1s0xda76b871f50c5c1:0x7ac946ed7408076b?sa=X&ved=2ahUKEwiMj_DwrJjpAhVEr3EKHYyYBngQ8gEwAHoECAsQAQ"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Rabat, Morocco
-          </a>
-          .
+          I&apos;m <strong className="font-normal text-accent">{site.name}</strong>, a Frontend Engineer.
           <span className="mt-2 block text-sm text-muted">I build product-focused web apps.</span>
         </h1>
         {/* Faded behind the text on phones (no shadow), next to it with the moving shadow from sm up */}

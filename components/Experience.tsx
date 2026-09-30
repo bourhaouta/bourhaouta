@@ -136,7 +136,7 @@ export default function Experience() {
   return (
     <section>
       <div className="site-container">
-        <Heading caption="Experience">{yearsOfExperience()}+ years building product-focused web apps</Heading>
+        <Heading caption="Experience">{yearsOfExperience} years building product-focused web apps</Heading>
 
         {/* Right/bottom padding leaves room for the offset shadow */}
         <div className="space-y-6 pr-3 pb-3">

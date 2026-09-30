@@ -102,9 +102,5 @@ export function formatPeriod(job: Job): string {
   return `${format(job.start)} – ${job.end ? format(job.end) : "Present"}`;
 }
 
-/** Whole years since the first job, e.g. 9 */
-export function yearsOfExperience(): number {
-  const first = jobs.map((job) => job.start).sort()[0];
-  const start = new Date(`${first}-01T00:00:00Z`);
-  return Math.floor((Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
-}
+/** Shown in the Experience heading; update by hand */
+export const yearsOfExperience = "10+";
