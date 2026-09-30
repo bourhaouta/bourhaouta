@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Pen } from "@/lib/pens";
+import { site } from "@/lib/site";
 import Heading from "./Heading";
 
 export default function Pens({ pens }: { pens: Pen[] }) {
@@ -10,28 +11,31 @@ export default function Pens({ pens }: { pens: Pen[] }) {
       <div className="site-container">
         <Heading className="mb-6" caption="Pens" isLight noMargin>
           My picked pens on{" "}
-          <a
-            className="hover:underline"
-            href="https://codepen.io/bourhaouta"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="hover:underline" href={site.socials.codepen} target="_blank" rel="noopener noreferrer">
             CodePen
           </a>
         </Heading>
 
-        <ul className="grid grid-cols-3 gap-6">
+        <ul className="grid grid-cols-2 gap-6 sm:grid-cols-3">
           {pens.map((pen) => (
             <li key={pen.id} className="relative">
               <div className="absolute inset-0 mt-3 ml-3 -mr-2 rounded-lg bg-gray-100/25" />
 
-              <a href={pen.link} title={pen.title} className="ratio" target="_blank" rel="noopener noreferrer">
+              {/* The title link below is the accessible one; this image link is a mouse shortcut */}
+              <a
+                href={pen.link}
+                className="ratio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-hidden
+                tabIndex={-1}
+              >
                 <Image
                   className="rounded bg-gray-100"
                   src={`${pen.link}/image/large.png`}
-                  alt={pen.title}
+                  alt=""
                   fill
-                  sizes="200px"
+                  sizes="(min-width: 640px) 190px, 45vw"
                 />
               </a>
 

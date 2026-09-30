@@ -1,3 +1,4 @@
+import "server-only";
 import Parser from "rss-parser";
 
 export type Pen = {
@@ -13,7 +14,10 @@ export async function getPens(): Promise<Pen[]> {
   if (!feedUrl) return [];
 
   try {
-    const res = await fetch(feedUrl, { next: { revalidate: 60 * 60 * 24 } });
+    const res = await fetch(feedUrl, {
+      headers: { "User-Agent": "bourhaouta.com (+https://www.bourhaouta.com)" },
+      next: { revalidate: 86400 },
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const feed = await new Parser().parseString(await res.text());

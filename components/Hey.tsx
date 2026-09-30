@@ -3,11 +3,11 @@ import { site } from "@/lib/site";
 import Icon, { type IconName } from "./Icon";
 import rabat from "@/public/images/rabat.png";
 
-const links: { icon: IconName; url: string }[] = [
-  { icon: "twitter", url: "https://twitter.com/bourhaouta" },
-  { icon: "github", url: "https://github.com/bourhaouta" },
-  { icon: "codepen", url: "https://codepen.io/bourhaouta" },
-  { icon: "linkedin", url: "https://www.linkedin.com/in/bourhaouta" },
+const links: { icon: IconName; label: string; url: string }[] = [
+  { icon: "twitter", label: "Twitter", url: site.socials.twitter },
+  { icon: "github", label: "GitHub", url: site.socials.github },
+  { icon: "codepen", label: "CodePen", url: site.socials.codepen },
+  { icon: "linkedin", label: "LinkedIn", url: site.socials.linkedin },
 ];
 
 export default function Hey() {
@@ -30,24 +30,26 @@ export default function Hey() {
           </a>
           .
         </h1>
+        {/* Faded behind the text on phones, next to it from sm up */}
         <Image
-          className="absolute top-0 right-0 bottom-0 mr-4 h-full w-1/2 rounded-sm object-cover opacity-75"
+          className="absolute inset-y-0 right-0 mr-4 h-full w-[calc(100%-2rem)] rounded-sm object-cover opacity-25 sm:w-1/2 sm:opacity-75"
           src={rabat}
-          alt={site.name}
-          priority
+          alt=""
+          sizes="(min-width: 640px) 304px, 100vw"
+          preload
         />
       </div>
 
       <div className="site-container">
         <ul className="-ml-2 flex space-x-3">
-          {links.map(({ icon, url }) => (
+          {links.map(({ icon, label, url }) => (
             <li key={icon}>
               <a
                 className="relative inline-flex h-8 w-8 items-center justify-center rounded transition-colors duration-200 hover:bg-gray-200"
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={icon}
+                aria-label={label}
               >
                 <Icon name={icon} size={18} />
               </a>
