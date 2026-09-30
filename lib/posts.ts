@@ -23,6 +23,8 @@ export type Post = {
   cover?: string;
   excerpt: string;
   external?: string;
+  /** dev.to copy of a post written here; such posts are left out of /devto.xml */
+  devto?: string;
   tags: string[];
   timeToRead: number;
   content: string;
@@ -63,6 +65,7 @@ function readPost(filePath: string): Post | null {
     cover: data.cover,
     excerpt: excerpt?.trim() ?? "",
     external: data.external,
+    devto: data.devto,
     tags: Array.isArray(data.tags) ? data.tags : [],
     timeToRead: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
     // Drop the excerpt separator so it does not render as a <hr>
@@ -83,14 +86,16 @@ export function getLocalPost(slug: string): Post | undefined {
   return getPosts().find((post) => post.slug === slug && !post.external);
 }
 
-export async function renderMarkdown(markdown: string): Promise<string> {
-  const file = await unified()
-    .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeSlug)
-    .use(rehypePrism, { ignoreMissing: true })
-    .use(rehypeStringify)
-    .process(markdown);
+/**
+ * Renders a post's Markdown to HTML. `highlight: false` keeps code blocks as plain
+ * `<pre><code class="language-…">`, which feed readers and dev.to import cleanly.
+ */
+export async function renderMarkdown(
+  markdown: string,
+  { highlight = true }: { highlight?: boolean } = {},
+): Promise<string> {
+  const processor = unified().use(remarkParse).use(remarkRehype).use(rehypeSlug);
+  if (highlight) processor.use(rehypePrism, { ignoreMissing: true });
 
-  return String(file);
+  return String(await processor.use(rehypeStringify).process(markdown));
 }
