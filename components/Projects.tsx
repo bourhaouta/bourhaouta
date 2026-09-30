@@ -7,21 +7,32 @@ import ShadowFrame from "./ShadowFrame";
 const compact = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
 const exact = new Intl.NumberFormat("en");
 
-function Stats({ stats }: { stats: ProjectStats }) {
-  const items: { icon: IconName; value: string; label: string }[] = [];
+/** `short` labels fit next to a title; the full label stays as the hover title */
+function Stats({ stats, short = false }: { stats: ProjectStats; short?: boolean }) {
+  const items: { icon: IconName; value: string; label: string; shortLabel: string }[] = [];
 
   if (stats.stars !== undefined) {
-    items.push({ icon: "star", value: exact.format(stats.stars), label: "stars on GitHub" });
+    items.push({ icon: "star", value: exact.format(stats.stars), label: "stars on GitHub", shortLabel: "stars" });
   }
   if (stats.installs !== undefined) {
-    items.push({ icon: "download", value: compact.format(stats.installs), label: "installs" });
+    items.push({ icon: "download", value: compact.format(stats.installs), label: "installs", shortLabel: "installs" });
   }
   if (stats.downloads !== undefined) {
-    items.push({ icon: "download", value: compact.format(stats.downloads), label: "downloads on npm" });
+    items.push({
+      icon: "download",
+      value: compact.format(stats.downloads),
+      label: "downloads on npm",
+      shortLabel: "downloads",
+    });
   }
   if (stats.rating !== undefined && stats.ratingCount) {
     const reviews = `${stats.ratingCount} ${stats.ratingCount === 1 ? "review" : "reviews"}`;
-    items.push({ icon: "star", value: stats.rating.toFixed(1), label: `rating (${reviews})` });
+    items.push({
+      icon: "star",
+      value: stats.rating.toFixed(1),
+      label: `rating (${reviews})`,
+      shortLabel: "rating",
+    });
   }
 
   if (items.length === 0) return null;
@@ -29,12 +40,12 @@ function Stats({ stats }: { stats: ProjectStats }) {
   return (
     <ul className="flex flex-wrap gap-x-3 gap-y-1 text-2xs text-muted">
       {items.map((item) => (
-        <li key={item.label} className="flex items-center gap-1 whitespace-nowrap">
+        <li key={item.label} className="flex items-center gap-1 whitespace-nowrap" title={short ? item.label : undefined}>
           <span className="text-brand">
             <Icon name={item.icon} size={12} />
           </span>
           <span className="font-medium text-ink">{item.value}</span>
-          <span>{item.label}</span>
+          <span>{short ? item.shortLabel : item.label}</span>
         </li>
       ))}
     </ul>
@@ -64,7 +75,7 @@ function ProjectLink({ project }: { project: Project }) {
   );
 }
 
-function SourceLink({ project }: { project: Project }) {
+function SourceLink({ project, short = false }: { project: Project; short?: boolean }) {
   const source = project.github && `https://github.com/${project.github}`;
   // Nothing to add when the card itself already links to the code
   if (!source || project.url === source) return null;
@@ -75,7 +86,7 @@ function SourceLink({ project }: { project: Project }) {
       rel="noopener noreferrer"
       className="relative z-10 text-2xs text-muted underline-offset-2 hover:text-accent hover:underline"
     >
-      Source on GitHub
+      {short ? "GitHub" : "Source on GitHub"}
     </a>
   );
 }
@@ -114,16 +125,25 @@ function CompactProjectCard({ project, stats }: { project: Project; stats: Proje
       <ProjectIcon project={project} />
 
       <div className="flex-1">
-        <div className="mb-1 flex flex-wrap items-baseline gap-x-2">
-          <h3 className="text-lg leading-tight">
-            <ProjectLink project={project} />
-          </h3>
-          <Kind project={project} />
+        <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <div className="flex flex-wrap items-baseline gap-x-2">
+            <h3 className="text-lg leading-tight">
+              <ProjectLink project={project} />
+            </h3>
+            <Kind project={project} />
+          </div>
+
+          {/* From sm up: short numbers on the title's line, on the right */}
+          <div className="hidden items-center gap-x-3 sm:flex">
+            <Stats stats={stats} short />
+            <SourceLink project={project} short />
+          </div>
         </div>
-        {/* Full width; the numbers go on their own row below, aligned right */}
+
         <p className="text-muted">{project.description}</p>
 
-        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 sm:justify-end">
+        {/* Phones: full numbers under the description */}
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 sm:hidden">
           <Stats stats={stats} />
           <SourceLink project={project} />
         </div>
