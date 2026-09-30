@@ -42,7 +42,7 @@ export default async function Projects() {
   const stats = await Promise.all(projects.map(getProjectStats));
 
   return (
-    <section>
+    <section id="projects" className="scroll-mt-8">
       <div className="site-container">
         <Heading caption="Projects">Things I&apos;ve built</Heading>
 

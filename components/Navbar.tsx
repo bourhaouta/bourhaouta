@@ -3,14 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import Icon from "./Icon";
+import NavLinks from "./NavLinks";
 import brand from "@/public/images/brand.svg";
 
 export type Back = { title: string; path: Route };
 
 export default function Navbar({ back }: { back?: Back }) {
   return (
-    <nav className="mb-4 print:hidden" aria-label="Main">
-      <div className="site-container grid h-32 grid-cols-3 items-center">
+    <nav className="mb-8 pt-6 print:hidden" aria-label="Main">
+      <div className="site-container grid h-20 grid-cols-3 items-center">
         <div>
           {back && (
             <Link
@@ -31,6 +32,10 @@ export default function Navbar({ back }: { back?: Back }) {
         </div>
 
         <div />
+      </div>
+
+      <div className="site-container">
+        <NavLinks />
       </div>
     </nav>
   );

@@ -135,7 +135,7 @@ export default function Experience() {
   const past = jobs.filter((job) => !job.featured);
 
   return (
-    <section>
+    <section id="experience" className="scroll-mt-8">
       <div className="site-container">
         <Heading caption="Experience">{yearsOfExperience} years building product-focused web apps</Heading>
 

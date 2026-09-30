@@ -159,6 +159,13 @@
     scroll-margin-top: 2rem;
   }
 
+  /* Smooth jumps to #experience, #projects, #contact (off with reduced motion) */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     ::before,
