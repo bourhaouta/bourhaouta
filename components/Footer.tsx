@@ -8,7 +8,15 @@ import sky from "@/public/images/sky.png";
 export default function Footer() {
   return (
     <footer id="contact" className="relative mt-20 scroll-mt-8 print:hidden">
-      <Image className="absolute bottom-0 -z-1 dark:hidden" src={sky} alt="" sizes="100vw" />
+      {/* Sky centered at the bottom; both sides fade into the page so wide screens have no hard edges */}
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-1 flex justify-center overflow-hidden dark:hidden">
+        <Image
+          className="h-auto w-full max-w-[1800px] [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]"
+          src={sky}
+          alt=""
+          sizes="(min-width: 1800px) 1800px, 100vw"
+        />
+      </div>
 
       <div className="site-container sm:px-20">
         <Heading caption="Contact" className="items-center">
