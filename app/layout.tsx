@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Rubik } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import { alternates, baseOpenGraph, baseTwitter } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "prismjs/themes/prism-okaidia.css";
@@ -51,7 +52,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en" className={rubik.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Web Analytics; only sends data on Vercel deployments */}
+        <Analytics />
+      </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
