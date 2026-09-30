@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useId } from "react";
 import { sendContact } from "@/app/actions/contact";
 import { CONTACT_LIMITS, type ContactState } from "@/lib/contact";
 import Button from "./Button";
@@ -12,27 +12,29 @@ const labelClass = "block mb-1 font-medium tracking-wide cursor-pointer";
 
 const initialState: ContactState = { status: "idle" };
 
-export default function ContactForm() {
+// Can appear twice on a page (footer and contact dialog), so field ids are unique
+export default function ContactForm({ className = "mb-10" }: { className?: string }) {
   const [state, formAction, pending] = useActionState(sendContact, initialState);
+  const id = useId();
 
   if (state.status === "success") {
     return (
-      <p role="status" className="mb-10 text-center text-sm">
+      <p role="status" className={`text-center text-sm ${className}`}>
         {state.message}
       </p>
     );
   }
 
   return (
-    <form action={formAction} className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2" aria-busy={pending}>
+    <form action={formAction} className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${className}`} aria-busy={pending}>
       <input type="text" name="bot-field" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden />
 
       <div>
-        <label htmlFor="name" className={labelClass}>
+        <label htmlFor={`${id}-name`} className={labelClass}>
           Full name
         </label>
         <input
-          id="name"
+          id={`${id}-name`}
           name="name"
           className={`h-10 ${inputClass}`}
           type="text"
@@ -45,11 +47,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className={labelClass}>
+        <label htmlFor={`${id}-email`} className={labelClass}>
           Email address
         </label>
         <input
-          id="email"
+          id={`${id}-email`}
           name="email"
           className={`h-10 ${inputClass}`}
           type="email"
@@ -62,11 +64,11 @@ export default function ContactForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <label htmlFor="message" className={labelClass}>
+        <label htmlFor={`${id}-message`} className={labelClass}>
           Message
         </label>
         <textarea
-          id="message"
+          id={`${id}-message`}
           name="message"
           className={`h-32 py-3 ${inputClass}`}
           placeholder="Your message"

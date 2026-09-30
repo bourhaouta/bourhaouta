@@ -255,6 +255,33 @@
     transition-duration: 90ms;
   }
 
+  /* Contact dialog (components/ContactDialog.tsx): fades and rises in; the page behind can't scroll */
+  .contact-dialog {
+    opacity: 0;
+    translate: 0 0.5rem;
+    transition:
+      opacity 200ms ease,
+      translate 200ms ease,
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+
+  .contact-dialog[open] {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    .contact-dialog[open] {
+      opacity: 0;
+      translate: 0 0.5rem;
+    }
+  }
+
+  html:has(.contact-dialog[open]) {
+    overflow: hidden;
+  }
+
   /* Social icons (components/SocialIconLink.tsx): a red copy of the icon is its shadow */
   .icon-shadow {
     --sx: 2px;

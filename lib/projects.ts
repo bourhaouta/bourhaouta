@@ -32,7 +32,7 @@ export const projects: Project[] = [
     name: "Tailwind CSS Shades",
     kind: "VS Code extension",
     description:
-      "Generate a full Tailwind CSS color palette (tints and shades) from one color, right inside your editor.",
+      "Generate a full Tailwind CSS palette (50\u2060–\u2060950) from any color, right in your editor. Version 1.0 adds Tailwind v4, OKLCH, and version-aware output.",
     url: "https://marketplace.visualstudio.com/items?itemName=bourhaouta.tailwindshades",
     icon: "/images/projects/tailwindshades.png",
     brand: "#38b2ac",
@@ -47,6 +47,17 @@ export const projects: Project[] = [
     icon: "/images/projects/shooot.png",
     brand: "#ff4b5c",
     github: "bourhaouta/shooot",
+  },
+  {
+    name: "This website",
+    kind: "Next.js site",
+    description:
+      "My portfolio and blog, built end to end: Next.js 16, TypeScript and Tailwind v4, with a server-side contact form, RSS syndication to dev.to, generated share images, and a printable resume.",
+    url: "https://github.com/bourhaouta/bourhaouta",
+    icon: "/images/projects/bourhaouta.svg",
+    brand: "#db4d53",
+    github: "bourhaouta/bourhaouta",
+    compact: true,
   },
   {
     name: "hotory",

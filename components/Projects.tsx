@@ -65,10 +65,12 @@ function ProjectLink({ project }: { project: Project }) {
 }
 
 function SourceLink({ project }: { project: Project }) {
-  if (!project.github) return null;
+  const source = project.github && `https://github.com/${project.github}`;
+  // Nothing to add when the card itself already links to the code
+  if (!source || project.url === source) return null;
   return (
     <a
-      href={`https://github.com/${project.github}`}
+      href={source}
       target="_blank"
       rel="noopener noreferrer"
       className="relative z-10 text-2xs text-muted underline-offset-2 hover:text-accent hover:underline"
