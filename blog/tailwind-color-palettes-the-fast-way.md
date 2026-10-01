@@ -6,6 +6,7 @@ date: 2026-09-30
 cover: /images/blog/tailwind-shades-cover.webp
 tags: ["showdev", "tailwindcss", "vscode", "css"]
 comments: false
+devto: https://dev.to/bourhaouta/tailwind-color-palettes-the-fast-way-2n3l
 ---
 
 You have one brand color and you need the full Tailwind palette, from 50 to 950. No need to ask the AI for it, one shortcut in your editor does it.
@@ -47,3 +48,5 @@ It doesn't just mix your color with white and black. It finds the closest Tailwi
 - [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=bourhaouta.tailwindshades)
 - [Open VSX](https://open-vsx.org/extension/bourhaouta/tailwindshades) for Cursor, Windsurf and VSCodium
 - [Source on GitHub](https://github.com/bourhaouta/vscode-tailwindshades)
+
+If it saves you some time, a rating on the Marketplace or Open VSX helps other people find it.
