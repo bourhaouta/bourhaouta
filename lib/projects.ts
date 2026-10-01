@@ -15,8 +15,8 @@ export type Project = {
   marketplace?: string;
   // Package name on npm
   npm?: string;
-  /** Short card across both columns, for smaller projects */
-  compact?: boolean;
+  /** Big highlight card at the top; other projects get short cards */
+  featured?: boolean;
 };
 
 export type ProjectStats = {
@@ -39,6 +39,7 @@ export const projects: Project[] = [
     brand: "#38b2ac",
     github: "bourhaouta/vscode-tailwindshades",
     marketplace: "bourhaouta.tailwindshades",
+    featured: true,
   },
   {
     name: "Shooot",
@@ -58,7 +59,6 @@ export const projects: Project[] = [
     icon: "/images/projects/bourhaouta.svg",
     brand: "#db4d53",
     github: "bourhaouta/bourhaouta",
-    compact: true,
   },
   {
     name: "hotory",
@@ -70,7 +70,6 @@ export const projects: Project[] = [
     brand: "#f97316",
     github: "bourhaouta/hotory",
     npm: "hotory",
-    compact: true,
   },
 ];
 
