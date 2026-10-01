@@ -81,7 +81,8 @@ function Stats({
           className="flex items-center gap-1 whitespace-nowrap"
           title={short ? item.label : undefined}
         >
-          <span className="text-brand">
+          {/* Up a little, to the middle of the digits rather than of the line box */}
+          <span className="flex -translate-y-[0.115em] text-brand">
             <Icon name={item.icon} size={12} />
           </span>
           <span className="font-medium text-ink">{item.value}</span>
