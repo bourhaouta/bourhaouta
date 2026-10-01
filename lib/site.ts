@@ -8,6 +8,8 @@ export const site = {
   twitter: "@bourhaouta",
   // Forwards to Gmail through ImprovMX
   email: "contact@bourhaouta.com",
+  // Google Analytics measurement ID (public, it ships in the page anyway)
+  gaId: "G-VTKBM36ZZQ",
   // Shown under the intro with a green dot, and as a "Now" block above the
   // experience; set to undefined to hide both
   status: "Open to new opportunities" as string | undefined,

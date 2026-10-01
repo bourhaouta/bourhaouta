@@ -1,5 +1,5 @@
-// Sends a Google Analytics event. Does nothing when GA isn't loaded (no
-// NEXT_PUBLIC_GA_ID, or blocked by the browser).
+// Sends a Google Analytics event. Does nothing when GA isn't loaded (not the
+// production deploy, or blocked by the browser).
 // Vercel's custom events need the Pro plan, so clicks only go to GA.
 
 type Params = Record<string, string>;

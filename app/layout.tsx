@@ -49,7 +49,8 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  // Production deploy only, so local and preview visits stay out of the stats
+  const gaId = process.env.VERCEL_ENV === "production" ? site.gaId : undefined;
 
   return (
     <html lang="en" className={rubik.variable}>
