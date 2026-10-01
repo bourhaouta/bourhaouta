@@ -1,8 +1,9 @@
 "use client";
 
-import { useActionState, useId } from "react";
+import { useActionState, useEffect, useId } from "react";
 import { sendContact } from "@/app/actions/contact";
 import { CONTACT_LIMITS, type ContactState } from "@/lib/contact";
+import { trackEvent } from "@/lib/track";
 import Button from "./Button";
 import Icon from "./Icon";
 
@@ -16,6 +17,10 @@ const initialState: ContactState = { status: "idle" };
 export default function ContactForm({ className = "mb-10" }: { className?: string }) {
   const [state, formAction, pending] = useActionState(sendContact, initialState);
   const id = useId();
+
+  useEffect(() => {
+    if (state.status === "success") trackEvent("contact_submit");
+  }, [state.status]);
 
   if (state.status === "success") {
     return (

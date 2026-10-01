@@ -73,6 +73,7 @@ export default function Hey() {
         <span aria-hidden className="h-4 w-px bg-line" />
         <Link
           href="/resume"
+          data-event="resume_click"
           className="inline-flex items-center gap-1 underline-offset-2 hover:text-accent-hover hover:underline"
         >
           <Icon name="file" size={14} />

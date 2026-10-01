@@ -28,7 +28,13 @@ export default function ContactDialog({ buttonClassName }: { buttonClassName: st
 
   return (
     <>
-      <button type="button" className={`cursor-pointer ${buttonClassName}`} onClick={open}>
+      <button
+        type="button"
+        className={`cursor-pointer ${buttonClassName}`}
+        onClick={open}
+        data-event="nav_click"
+        data-event-item="Contact"
+      >
         Contact
       </button>
 

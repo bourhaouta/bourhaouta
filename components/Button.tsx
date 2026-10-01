@@ -9,12 +9,14 @@ type Props = {
   to?: Route;
   href?: string;
   children: ReactNode;
+  /** Analytics event sent on click (see ClickTracker) */
+  event?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function Button({ to, href, children, ...buttonProps }: Props) {
+export default function Button({ to, href, children, event, ...buttonProps }: Props) {
   if (to) {
     return (
-      <Link className={className} href={to}>
+      <Link className={className} href={to} data-event={event}>
         {children}
       </Link>
     );
@@ -22,14 +24,14 @@ export default function Button({ to, href, children, ...buttonProps }: Props) {
 
   if (href) {
     return (
-      <a className={className} href={href}>
+      <a className={className} href={href} data-event={event}>
         {children}
       </a>
     );
   }
 
   return (
-    <button className={className} {...buttonProps}>
+    <button className={className} data-event={event} {...buttonProps}>
       {children}
     </button>
   );

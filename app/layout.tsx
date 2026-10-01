@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Rubik } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
+import ClickTracker from "@/components/ClickTracker";
 import { alternates, baseOpenGraph, baseTwitter } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "prismjs/themes/prism-okaidia.css";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         {/* Vercel Web Analytics; only sends data on Vercel deployments */}
         <Analytics />
+        <ClickTracker />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>

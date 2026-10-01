@@ -51,6 +51,8 @@ export default function SocialIconLink({ icon, label, url }: Props) {
       title={label}
       onPointerMove={move}
       onPointerLeave={reset}
+      data-event="social_click"
+      data-event-network={icon}
     >
       <span className="icon-shadow-back" aria-hidden>
         <Icon name={icon} size={18} />

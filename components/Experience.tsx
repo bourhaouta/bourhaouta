@@ -127,7 +127,9 @@ function Now({ status }: { status: string }) {
         <h3 className="text-base leading-snug">{status}</h3>
         <p className="text-muted">{site.availability}</p>
       </div>
-      <Button href="/#contact">Get in touch</Button>
+      <Button href="/#contact" event="hire_click">
+        Get in touch
+      </Button>
     </div>
   );
 }

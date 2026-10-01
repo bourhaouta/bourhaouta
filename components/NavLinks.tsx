@@ -29,6 +29,8 @@ export default function NavLinks() {
               href={href}
               className={`${linkClass} ${current ? "text-accent" : "text-muted"}`}
               aria-current={current ? "page" : undefined}
+              data-event="nav_click"
+              data-event-item={label}
             >
               {label}
             </Link>

@@ -86,7 +86,14 @@ function ProjectIcon({ project }: { project: Project }) {
 // Stretched link: the whole card is clickable
 function ProjectLink({ project }: { project: Project }) {
   return (
-    <a href={project.url} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="after:absolute after:inset-0"
+      data-event="project_click"
+      data-event-project={project.name}
+    >
       {project.name}
     </a>
   );
@@ -102,6 +109,8 @@ function SourceLink({ project, short = false }: { project: Project; short?: bool
       target="_blank"
       rel="noopener noreferrer"
       className="relative z-10 text-2xs text-muted underline-offset-2 hover:text-accent hover:underline"
+      data-event="project_source_click"
+      data-event-project={project.name}
     >
       {short ? "GitHub" : "Source on GitHub"}
     </a>
