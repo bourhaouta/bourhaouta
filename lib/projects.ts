@@ -30,11 +30,11 @@ export type ProjectStats = {
 
 export const projects: Project[] = [
   {
-    name: "Tailwind CSS Shades",
-    kind: "VS Code extension",
+    name: "Tailwind Shades",
+    kind: "VS Code · CLI · MCP",
     description:
-      "Generate a full Tailwind CSS palette (50\u2060–\u2060950) from any color, right in your editor. Version 1.0 adds Tailwind v4, OKLCH, and version-aware output.",
-    url: "https://marketplace.visualstudio.com/items?itemName=bourhaouta.tailwindshades",
+      "Full Tailwind CSS palettes (50\u2060–\u2060950) from any color, in OKLCH, for Tailwind v4 to v1. A VS Code extension, a CLI, a website, and an MCP server so AI agents use real palettes instead of guessing.",
+    url: "https://tailwindshades.bourhaouta.com",
     icon: "/images/projects/tailwindshades.png",
     brand: "#38b2ac",
     github: "bourhaouta/vscode-tailwindshades",
