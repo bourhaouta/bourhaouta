@@ -1,11 +1,12 @@
 "use client";
 
-import { useActionState, useEffect, useId } from "react";
+import { useActionState, useEffect, useId, useState } from "react";
 import { sendContact } from "@/app/actions/contact";
 import { CONTACT_LIMITS, type ContactState } from "@/lib/contact";
 import { trackEvent } from "@/lib/track";
 import Button from "./Button";
 import Icon from "./Icon";
+import Turnstile from "./Turnstile";
 
 const inputClass =
   "block w-full px-4 leading-tight text-gray-700 bg-field transition-colors duration-200 border rounded-sm appearance-none placeholder:text-muted/60 focus:outline-hidden focus:border-secondary-200 dark:text-ink dark:focus:border-secondary-400";
@@ -13,10 +14,14 @@ const labelClass = "block mb-1 font-medium tracking-wide cursor-pointer";
 
 const initialState: ContactState = { status: "idle" };
 
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
 // Can appear twice on a page (footer and contact dialog), so field ids are unique
 export default function ContactForm({ className = "mb-10" }: { className?: string }) {
   const [state, formAction, pending] = useActionState(sendContact, initialState);
   const id = useId();
+  // Load the bot check only once someone starts using the form
+  const [touched, setTouched] = useState(false);
 
   useEffect(() => {
     if (state.status === "success") trackEvent("contact_submit");
@@ -31,7 +36,12 @@ export default function ContactForm({ className = "mb-10" }: { className?: strin
   }
 
   return (
-    <form action={formAction} className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${className}`} aria-busy={pending}>
+    <form
+      action={formAction}
+      className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${className}`}
+      aria-busy={pending}
+      onFocus={() => setTouched(true)}
+    >
       <input type="text" name="bot-field" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden />
 
       <div>
@@ -83,7 +93,12 @@ export default function ContactForm({ className = "mb-10" }: { className?: strin
         />
       </div>
 
-      <div className="flex items-center justify-end gap-4 sm:col-span-2">
+      <div className="flex flex-wrap items-center justify-end gap-4 sm:col-span-2">
+        {turnstileSiteKey && touched && (
+          <div className="mr-auto">
+            <Turnstile siteKey={turnstileSiteKey} resetKey={state} />
+          </div>
+        )}
         {state.status === "error" && (
           <p role="alert" className="text-accent">
             {state.message}

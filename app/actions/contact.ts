@@ -5,6 +5,27 @@ import { CONTACT_LIMITS, type ContactState } from "@/lib/contact";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Ask Cloudflare if the Turnstile token is real. Skipped when no secret is set (local dev).
+async function passesTurnstile(formData: FormData): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+
+  const token = String(formData.get("cf-turnstile-response") ?? "");
+  if (!token) return false;
+
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body: new URLSearchParams({ secret, response: token }),
+    });
+    const data: { success?: boolean } = await res.json();
+    return data.success === true;
+  } catch (error) {
+    console.error("Turnstile error:", error);
+    return false;
+  }
+}
+
 function field(formData: FormData, key: string): string {
   return String(formData.get(key) ?? "").trim();
 }
@@ -29,6 +50,10 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
     message.length > CONTACT_LIMITS.message
   ) {
     return { status: "error", message: "Your message is too long. Please make it shorter.", fields };
+  }
+
+  if (!(await passesTurnstile(formData))) {
+    return { status: "error", message: "Please wait for the bot check to finish, then try again.", fields };
   }
 
   const { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env;
