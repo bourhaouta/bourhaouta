@@ -11,7 +11,7 @@
     "@next/third-parties": "^16.3.7",
     "@vercel/analytics": "^2.0.1",
     "gray-matter": "^4.0.3",
-    "next": "^16.3.7",
+    "next": "^16.4.2",
     "prismjs": "^1.30.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
